@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\User;
 
 class AdminUsersController extends Controller
 {
@@ -16,7 +17,8 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        return view('admin.users.index');
+        $users = User::all();
+        return view('admin.users.index')->with('users', $users);
     }
 
     /**
@@ -27,6 +29,7 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
+        return view('admin.users.create');
     }
 
     /**
@@ -38,6 +41,21 @@ class AdminUsersController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required'
+
+        ]);
+
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+
+        return redirect('/admin/users');
     }
 
     /**
