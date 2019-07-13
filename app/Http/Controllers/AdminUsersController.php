@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\UsersRequest;
 use App\User;
+use App\Role;
 
 class AdminUsersController extends Controller
 {
@@ -29,7 +31,8 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create')->with('roles', $roles);
     }
 
     /**
@@ -38,24 +41,36 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersRequest $request)
     {
         //
-        $this->validate($request,[
+        // $this->validate($request,[
 
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required'
+        //     'name' => 'required|max:255',
+        //     'email' => 'required|email|max:255|unique:users',
+        //     'password' => 'required|confirmed',
+        //     'is_active' => 'required',
+        //     'role_id' => 'required'
 
-        ]);
+        // ]);
 
         $user = new User;
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('password'));
-        $user->save();
+        $user->password = bcrypt($request->input('password'));  
 
-        return redirect('/admin/users');
+        if ($request->input('is_active') == 'Active') {
+            # code...
+            $user->is_active = 1;
+
+        }else {
+
+            $user->is_active = 0;
+        }
+        $user->role_id = $request->input('role_id');
+
+        $user->save();
+        return redirect('/admin/users')->with('success', 'The User Has Been Created');
     }
 
     /**

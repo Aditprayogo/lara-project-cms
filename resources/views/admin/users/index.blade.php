@@ -26,11 +26,11 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->role->name}}</td>
                         <td>
-                            
+
                             @if ($user->is_active == 1)
                                  active   
                             @else
-                                Non active
+                                Not active
                             @endif
                            
                         </td>
