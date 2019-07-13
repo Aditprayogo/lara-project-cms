@@ -76,16 +76,25 @@
             <div class="form-group">
                 <label for="exampleInputPassword1">Status</label>
                 <select class="form-control" id="exampleFormControlSelect1" name="is_active">
-                    <option>Active</option>
-                    <option>Not Active</option>
+                    <option value="1">Active</option>
+                    <option value="2">Not Active</option>
                 </select>
             </div>
             {{-- end form untuk status --}}
 
-            <div class="form group">
-                <label for="file">Image</label>
-                <input type="file" name="file">
+            {{-- Form untuk cover_image --}}
+            <div class="form group{{ $errors->has('photo_id') ? ' has-error' : '' }}">
+                <label for="cover_image">Image</label>
+                <input type="file" name="photo_id">
+
+                @if ($errors->has('photo_id'))
+                    <span class="help-block">
+                        <strong> The Image Field Must Required </strong>
+                    </span>
+                @endif
             </div>
+            {{-- Form untuk cover_image --}}
+
 
             <div class="form-group form-check">
 

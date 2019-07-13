@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\UsersRequest;
 use App\User;
 use App\Role;
+use App\Photo;
 
 class AdminUsersController extends Controller
 {
@@ -43,33 +44,27 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
-        //
-        // $this->validate($request,[
 
-        //     'name' => 'required|max:255',
-        //     'email' => 'required|email|max:255|unique:users',
-        //     'password' => 'required|confirmed',
-        //     'is_active' => 'required',
-        //     'role_id' => 'required'
 
-        // ]);
+        $input = $request->all();
 
-        $user = new User;
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('password'));  
+        if ($file = $request->file('photo_id')) {
 
-        if ($request->input('is_active') == 'Active') {
             # code...
-            $user->is_active = 1;
+            $name = time() . $file->getClientOriginalName();
 
-        }else {
+            $file->move('images', $name);
 
-            $user->is_active = 0;
+            $photo = Photo::create(['file' => $name]);
+
+            $input['photo_id'] = $photo->id;
+         
         }
-        $user->role_id = $request->input('role_id');
 
-        $user->save();
+        $input['password'] = bcrypt($request->input('password'));
+
+        User::create($input);
+
         return redirect('/admin/users')->with('success', 'The User Has Been Created');
     }
 

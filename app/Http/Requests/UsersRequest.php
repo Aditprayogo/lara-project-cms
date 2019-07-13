@@ -29,7 +29,8 @@ class UsersRequest extends Request
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed',
             'is_active' => 'required',
-            'role_id' => 'required'
+            'role_id' => 'required',
+            'photo_id' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }
