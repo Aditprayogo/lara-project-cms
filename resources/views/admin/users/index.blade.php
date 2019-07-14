@@ -14,7 +14,8 @@
             <th scope="col">Active</th>
             <th scope="col">created</th>           
             <th scope="col">updated</th>           
-          </tr>
+            <th scope="col">Action</th>           
+        </tr>
         </thead>
         <tbody>
 
@@ -47,6 +48,16 @@
                         </td>
                         <td>{{$user->created_at->diffForHumans()}}</td>
                         <td>{{$user->updated_at->diffForHumans()}}</td>
+                        <td>
+                            <form action="{{route('admin.users.destroy', ['id'=>$user->id])}}" method="POST">
+
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are You Sure want to delete ? ')">Delete</button>
+
+                            </form>
+                        </td>
                     </tr>    
                 @endforeach
                 

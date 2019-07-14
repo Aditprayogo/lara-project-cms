@@ -8,7 +8,7 @@
             {{-- Form untuk nama --}}
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
               <label for="exampleInputEmail1">Name</label>
-              <input type="text" class="form-control" name="name">
+              <input type="text" class="form-control" name="name" value="{{old('name')}}">
 
                 @if ($errors->has('name'))
                     <span class="help-block">
@@ -21,7 +21,7 @@
             {{-- Form Untuk email --}}
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
               <label for="exampleInputEmail1">Email</label>
-              <input type="email" class="form-control" name="email">   
+              <input type="email" class="form-control" name="email" value="{{old('email')}}">   
               
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -65,7 +65,7 @@
                 <select class="form-control" id="exampleFormControlSelect1" name="role_id">
 
                     @foreach ($roles as $id => $role)
-                        <option value="{{$role->id}}">{{$role->name}}</option>
+                        <option value="{{$role->id}}" {{ old('role_id') == $role->id ? 'selected' : '' }}>{{$role->name}}</option>
                     @endforeach   
 
                 </select>
@@ -76,8 +76,8 @@
             <div class="form-group">
                 <label for="exampleInputPassword1">Status</label>
                 <select class="form-control" id="exampleFormControlSelect1" name="is_active">
-                    <option value="1">Active</option>
-                    <option value="2">Not Active</option>
+                    <option value="1" {{ old('is_active') == 1 ? 'selected' : '' }}>Active</option>
+                    <option value="2" {{ old('is_active') == 2 ? 'selected' : '' }}>Not Active</option>
                 </select>
             </div>
             {{-- end form untuk status --}}
