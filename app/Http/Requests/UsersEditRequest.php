@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UsersRequest extends Request
+class UsersEditRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class UsersRequest extends Request
             //
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'password' => 'required|confirmed',
+            'password' => 'confirmed',
             'is_active' => 'required',
             'role_id' => 'required',
             'photo_id' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
