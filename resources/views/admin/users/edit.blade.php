@@ -21,54 +21,54 @@
 
                 {{-- Form untuk nama --}}
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <label for="exampleInputEmail1">Name</label>
-                <input type="text" class="form-control" name="name" value="{{$user->name}}">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" name="name" value="{{$user->name}}">
 
-                    @if ($errors->has('name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
                 </div>
                 {{-- End form nama --}}
 
                 {{-- Form Untuk email --}}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" name="email" value="{{$user->email}}">   
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" name="email" value="{{$user->email}}">   
                 
-                    @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
                 </div>
                 {{-- End form untuk email --}}
 
                 {{-- Form untuk password --}}
                 <div class="form-group{{ $errors->has('old_password') ? ' has-error' : '' }}">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" name="old_password" value="{{$user->password}}">
-        
-                            @if ($errors->has('password'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('old_password') }}</strong>
-                                </span>
-                            @endif
-        
-                        </div>
-                        {{-- end form untuk password --}}
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" name="old_password" value="{{$user->password}}">
+
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('old_password') }}</strong>
+                            </span>
+                        @endif
+
+                </div>
+                {{-- end form untuk password --}}
                 
                 {{-- Form untuk password --}}
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                <label for="exampleInputPassword1">New Password</label>
-                <input type="password" class="form-control" name="password" >
+                    <label for="exampleInputPassword1">New Password</label>
+                    <input type="password" class="form-control" name="password" >
 
-                    @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                    @endif
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
 
                 </div>
                 {{-- end form untuk password --}}
@@ -78,11 +78,11 @@
                     <label for="password-confirm">Confirm Password</label>
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
 
-                    @if ($errors->has('password_confirmation'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                        </span>
-                    @endif
+                        @if ($errors->has('password_confirmation'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password_confirmation') }}</strong>
+                            </span>
+                        @endif
                 
                 </div>
                 {{-- end form confirm password --}}
@@ -125,19 +125,18 @@
                     <label for="cover_image">Image</label>
                     <input type="file" name="photo_id">
 
-                    @if ($errors->has('photo_id'))
-                        <span class="help-block">
-                            <strong> The Image Field Must Required </strong>
-                        </span>
-                    @endif
+                        @if ($errors->has('photo_id'))
+                            <span class="help-block">
+                                <strong> The Image Field Must Required </strong>
+                            </span>
+                        @endif
                 </div>
                 {{-- Form untuk cover_image --}}
 
 
                 <div class="form-group form-check">
-
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
