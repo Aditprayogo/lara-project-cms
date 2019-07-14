@@ -1,0 +1,59 @@
+[33mcommit 9d87cddba291fc12d6ab3c1c53eba7b6f4f750e5[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Mon Jul 15 00:15:06 2019 +0700
+
+    Success user edit and add old value to create
+
+[33mcommit ee6b0bd840992c44117603d2980936980de0009a[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Sun Jul 14 23:42:42 2019 +0700
+
+    success middleware admin
+
+[33mcommit 006fd5d4e638cde271f9599e843d9c1e73a3e7eb[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Sun Jul 14 18:49:11 2019 +0700
+
+    success edit validation and form
+
+[33mcommit 71ad93a18d5224d2f93100b8948bc440f858e1c1[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Sun Jul 14 02:34:09 2019 +0700
+
+    succesfull validate form and adding photo
+
+[33mcommit f359ec02b744a181f28b389a60294bce454ac960[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Sat Jul 13 22:36:36 2019 +0700
+
+    add migration cover_image to user
+
+[33mcommit 8cf05f4da6f868f9bd634b108265f084237fa030[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Sat Jul 13 16:22:05 2019 +0700
+
+    adding crud in adminuserscreate and successed
+
+[33mcommit e2e399d801df9cd22fb7de5420b6695409477f82[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Fri Jul 12 23:23:42 2019 +0700
+
+    costum padding top to 0
+
+[33mcommit dd356ed548f1193ea08256b99a8076f8b3cd6cd3[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Fri Jul 12 22:56:15 2019 +0700
+
+    second commit
+
+[33mcommit 55222cc7e8758f61a21f3e403714e7c781e60606[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Fri Jul 12 22:56:02 2019 +0700
+
+    adding templates admin blade and working in laravel-elixir
+
+[33mcommit f2faa6dbbd6fc121fd1d4b63ade180083ef1bdd7[m
+Author: Aditprayogo <adit.ihzar@gmail.com>
+Date:   Fri Jul 12 18:20:06 2019 +0700
+
+    first commit
