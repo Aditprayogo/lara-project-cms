@@ -3,12 +3,16 @@
 @section('content')
     <h1>Edit User</h1>
 
+    
+        
+    
+
     {{-- Untuk image --}}
     <div class="col-sm-3">
         @if ($user->photo)
             <img src="{{$user->photo->file}}" alt="" class="img-responsive img-rounded">
         @else 
-            <img src="/images/noimage.jpg" alt="" class="img-responsive img-rounded">
+            <img src="/images/noimage.png" alt="" class="img-responsive img-rounded">
         @endif
         
     </div>
@@ -140,6 +144,8 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
+
+                <a href="/admin/users" class="btn btn-primary">Back</a>
 
             
         </form>

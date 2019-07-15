@@ -24,12 +24,15 @@ class Admin
             # code...
 
             //jika user adalah admin
-            if (Auth::user()->isadmin()) {
+            if (Auth::user()->isAdmin()) {
 
                 # code...
                 return $next($request);
 
             }
+
+            return redirect('/');
+           
         }
 
         return redirect('/');

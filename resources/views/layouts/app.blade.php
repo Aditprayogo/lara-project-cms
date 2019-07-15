@@ -61,9 +61,17 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
+                            
                             <ul class="dropdown-menu" role="menu">
+
+                                @if (Auth::user()->isadmin())
+
+                                    <li><a href="/admin"><i class="fa fa-btn fa-sign-out"></i>Go to admin</a></li>
+                                    
+                                @endif
+                                
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+
                             </ul>
                         </li>
                     @endif

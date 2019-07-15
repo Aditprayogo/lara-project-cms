@@ -115,6 +115,7 @@ class AdminUsersController extends Controller
         $input = $request->all();
 
         if ($file = $request->file('photo_id')) {
+
             # code...
             $name = time() . $file->getClientOriginalName();
 
@@ -123,6 +124,7 @@ class AdminUsersController extends Controller
             $photo = Photo::create(['file' => $name]);
 
             $input['photo_id'] = $photo->id;
+            
         }
 
         $input['password'] = bcrypt($request->input('password'));
@@ -142,6 +144,8 @@ class AdminUsersController extends Controller
     {
         //
         $user = User::findOrFail($id);
+
+        // unlink(public_path() .  $user->photo->file);
 
         $user->delete();
 

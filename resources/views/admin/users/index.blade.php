@@ -31,7 +31,7 @@
                             @if($user->photo)
                                  <img src="{{$user->photo->file}}" width="50">
                             @else
-                                <img src="/images/noimage.jpg" width="50">
+                                <img src="/images/noimage.png" width="50">
                             @endif
 
                         </td>
