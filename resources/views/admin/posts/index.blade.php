@@ -41,7 +41,17 @@
                         <td>{{$post->updated_at->diffForHumans()}}</td>
                         <td>
                             <a href="{{route('admin.posts.edit', ['id' => $post->id])}}" class="btn btn-success fas fa-edit"></a> 
+
                             <br>
+                            
+                            <form action="route('admin.posts.destroy', ['id' => $post->id])" method="POST">
+                                
+                                {{ csrf_field() }}
+
+                                <input type="hidden" value="DELETE" name="_method">
+
+                                <button type="submit" class="btn btn-danger fas fa-user-minus" onclick="return('Are You sure want to delete this post ?')"></button>
+                            </form>
                         </td>
                     </tr>                   
                 @endforeach           
