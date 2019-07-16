@@ -3,7 +3,7 @@
 @section('content')
     <?php $i=1; ?>
     <h1>Users</h1>
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
           <tr>
             <th scope="col">No</th>
@@ -40,9 +40,9 @@
                         <td>
 
                             @if ($user->is_active == 1)
-                                 Active   
+                                 <span class="label label-primary">Active</span>   
                             @else
-                                Not active
+                                 <span class="label label-warning">Not Active</span> 
                             @endif         
 
                         </td>
