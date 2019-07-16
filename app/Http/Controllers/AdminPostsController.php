@@ -125,7 +125,7 @@ class AdminPostsController extends Controller
     {
         //
 
-        $post = Post::findOrFail($id);
+        // $post = Post::findOrFail($id);
 
         $input = $request->all();
 
@@ -140,7 +140,9 @@ class AdminPostsController extends Controller
             $input['photo_id'] = $photo->id;
         }
 
-        $post->update($input);
+        Auth::user()->posts()->whereId($id)->first()->update($input);
+
+        // $post->update($input);
 
         return redirect('admin/posts')->with('success', 'The Post Has Been Edited');
     }
@@ -154,5 +156,9 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         //
+
+        $post = Post::findOrFail($id)->whereId($id)->first()->delete();
+
+        return redirect('admin/posts')->with('success', 'The Post Has been deleted');
     }
 }

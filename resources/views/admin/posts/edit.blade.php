@@ -80,11 +80,19 @@
             </div>
             {{-- Form untuk cover_image --}}
                 <br>
+                
     
                 <button type="submit" class="btn btn-primary">Submit</button>  
 
+            
+
         </form>
 
+@section('footer')
+    
+    <br>
+
+@endsection
     
 
 @endsection
