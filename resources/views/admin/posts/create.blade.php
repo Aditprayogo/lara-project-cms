@@ -40,8 +40,12 @@
             <div class="form-group">
                 <label for="exampleInputPassword1">Status</label>
                 <select class="form-control" id="exampleFormControlSelect1" name="category_id">
-                    <option value="1">Laravel</option>
-                    <option value="2">Codeigniter</option>
+
+                    @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                   
+                    
                 </select>
             </div>
                 {{-- end form untuk status --}}

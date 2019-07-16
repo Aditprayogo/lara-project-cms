@@ -11,6 +11,7 @@ use App\Post;
 use App\Photo;
 use App\User;
 use Auth;
+use App\Category;
 
 class AdminPostsController extends Controller
 {
@@ -22,8 +23,9 @@ class AdminPostsController extends Controller
     public function index()
     {
         //
+        $categories = Category::all();
         $posts = Post::all();
-        return view('admin.posts.index')->with('posts', $posts);
+        return view('admin.posts.index', compact('categories', 'posts'));
     }
 
     /**
@@ -35,7 +37,8 @@ class AdminPostsController extends Controller
     {
         //
         // $user = User::all();
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create')->with('categories', $categories);
     }
 
     /**

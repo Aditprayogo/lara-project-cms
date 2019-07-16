@@ -10,10 +10,10 @@
             <tr>
                 <th scope="col">No</th>
                 <th scope="col">Photo</th>
-                <th scope="col">Owner</th>
-                <th scope="col">Category</th>
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
+                <th scope="col">Category</th>
+                <th scope="col">Owner</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Updated at</th>
             </tr>
@@ -28,10 +28,14 @@
                                 <img src="{{$post->photo->file}}" alt="" width="60">
                             @endif
                         </td>
-                        <td>{{$post->user->name}}</td>
-                        <td>{{$post->category_id}}</td>
                         <td>{{$post->title}}</td>
                         <td>{{ str_limit($post->body , 40) }}</td>
+                        <td>
+                            @if ($post->category)
+                            {{$post->category->name}}
+                            @endif                   
+                        </td>
+                        <td>{{$post->user->name}}</td>
                         <td>{{$post->created_at->diffForHumans()}}</td>
                         <td>{{$post->updated_at->diffForHumans()}}</td>
                     </tr>                   
