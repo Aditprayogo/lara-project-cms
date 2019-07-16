@@ -79,10 +79,11 @@
                 @endif
             </div>
             {{-- Form untuk cover_image --}}
-                <br>
+
+            <br>
                 
     
-                <button type="submit" class="btn btn-primary">Submit</button>  
+            <button type="submit" class="btn btn-primary">Submit</button>  
 
             
 
