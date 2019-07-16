@@ -16,6 +16,7 @@
                 <th scope="col">Owner</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Updated at</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +39,10 @@
                         <td>{{$post->user->name}}</td>
                         <td>{{$post->created_at->diffForHumans()}}</td>
                         <td>{{$post->updated_at->diffForHumans()}}</td>
+                        <td>
+                            <a href="{{route('admin.posts.edit', ['id' => $post->id])}}" class="btn btn-success fas fa-edit"></a> 
+                            <br>
+                        </td>
                     </tr>                   
                 @endforeach           
             @endif         

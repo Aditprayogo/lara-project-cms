@@ -8,7 +8,7 @@
         <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
     
-            <input type="hidden" name="user_id">
+            {{-- <input type="hidden" name="user_id"> --}}
     
             {{-- Form untuk title --}}
             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
