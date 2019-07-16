@@ -4,16 +4,17 @@
 
     <h1>Edit Posts</h1>
 
-    <div class="col-sm-3">
+   
+
+  
+
         @if ($post->photo)
 
-            <img src="{{$post->photo->file}}" alt="" class="img-responsive img-rounded">
+            <img src="{{$post->photo->file}}" alt="" class="img-responsive img-rounded" width="50%">
             
         @endif
 
-    </div>
-
-    <div class="col-sm-9">
+        <br>
 
         <form action="{{route('admin.posts.update', ['id' => $post->id])}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -84,6 +85,6 @@
 
         </form>
 
-    </div>
+    
 
 @endsection
