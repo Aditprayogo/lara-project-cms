@@ -127,7 +127,20 @@ class AdminUsersController extends Controller
             
         }
 
-        $input['password'] = bcrypt($request->input('password'));
+        //Jika password kosong
+        if ($input['password'] == '') {
+
+            # code...
+            $input['password'] = $request->input('old_password');
+
+
+        } else {
+
+            # code...
+            $input['password'] = bcrypt($request->input('password'));
+            
+        }
+            
         $user->update($input);
         
         return redirect('/admin/users')->with('success', 'The User Has Been Updated');

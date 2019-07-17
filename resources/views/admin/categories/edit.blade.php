@@ -6,7 +6,7 @@
 
     <div class="col-sm-6">
         <form action="{{route('admin.categories.update', ['id' => $category->id])}}" method="POST">
-            
+
             {{ csrf_field() }}
 
             <input type="hidden" name="_method" value="PUT">
@@ -15,7 +15,7 @@
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="exampleInputEmail1">Name</label>
                 <input type="text" class="form-control" name="name" value="{{$category->name}}">
-    
+                
                 @if ($errors->has('name'))
                     <span class="help-block">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -25,6 +25,7 @@
             {{-- End form title --}}
 
             <button type="submit" class="btn btn-primary">Submit</button>
+
         </form>
 
     </div>

@@ -36,10 +36,12 @@ class AdminPostsController extends Controller
      */
     public function create()
     {
-        //
-        // $user = User::all();
+       
+
         $categories = Category::all();
+
         return view('admin.posts.create')->with('categories', $categories);
+        
     }
 
     /**
@@ -75,6 +77,7 @@ class AdminPostsController extends Controller
         $input = $request->all();
 
         if ($file = $request->file('photo_id')) {
+
             # code...
             $name = time() . $file->getClientOriginalName();
 
@@ -86,7 +89,10 @@ class AdminPostsController extends Controller
 
         }
 
+        // //mendapatkan user yang sedang login
         Auth::user()->posts()->create($input);
+
+        // $user->posts()->create($input);
 
         return redirect('/admin/posts')->with('success', 'The Post Has Been Created');
     }
@@ -112,7 +118,9 @@ class AdminPostsController extends Controller
     {
         //
         $post = Post::findOrFail($id);
+
         $categories = Category::all();
+
         return view('admin.posts.edit', compact('post', 'categories'));
     }
 
@@ -131,7 +139,7 @@ class AdminPostsController extends Controller
 
         $input = $request->all();
 
-        if ($file = $request->file('photo_id')) {
+        if ( $file = $request->file('photo_id') ) {
             # code...
             $name = time() . $file->getClientOriginalName();
 
@@ -140,8 +148,10 @@ class AdminPostsController extends Controller
             $photo = Photo::create(['file' => $name]);
 
             $input['photo_id'] = $photo->id;
+
         }
 
+        //mendapatkan user yang sedang login
         Auth::user()->posts()->whereId($id)->first()->update($input);
 
         // $post->update($input);
