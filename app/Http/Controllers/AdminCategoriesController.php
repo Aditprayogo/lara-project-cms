@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\AdminCategoriesCreateRequest;
 
 use App\Category;
 
@@ -42,7 +43,7 @@ class AdminCategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminCategoriesCreateRequest $request)
     {
         //
         Category::create($request->all());
@@ -70,6 +71,10 @@ class AdminCategoriesController extends Controller
     public function edit($id)
     {
         //
+
+        $category = Category::findOrFail($id);
+
+        return view('admin.categories.edit')->with('category', $category);
     }
 
     /**
@@ -93,5 +98,9 @@ class AdminCategoriesController extends Controller
     public function destroy($id)
     {
         //
+
+        Category::findOrFail($id)->delete();
+
+        return redirect('admin/categories')->with('success', 'The category has been deleted');
     }
 }
