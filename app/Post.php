@@ -26,5 +26,6 @@ class Post extends Model
     {
         # code...
         return $this->belongsTo('App\Category');
+        
     }
 }
