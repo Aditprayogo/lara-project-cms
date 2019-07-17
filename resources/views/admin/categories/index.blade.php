@@ -18,6 +18,7 @@
             
 
                 @if ($categories)
+                
                     @foreach ($categories as $category)
                         <tr>
                             <th scope="row">{{$i++}}</th>
@@ -26,6 +27,7 @@
                             <td>{{$category->updated_at->diffForHumans()}}</td>
                         </tr>
                     @endforeach
+                    
                 @endif
                 
                 

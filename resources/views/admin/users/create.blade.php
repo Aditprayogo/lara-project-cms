@@ -65,7 +65,10 @@
                 <select class="form-control" id="exampleFormControlSelect1" name="role_id">
 
                     @foreach ($roles as $id => $role)
+
+                        {{-- Untuk mendapatkan old value --}}
                         <option value="{{$role->id}}" {{ old('role_id') == $role->id ? 'selected' : '' }}>{{$role->name}}</option>
+                        
                     @endforeach   
 
                 </select>
@@ -76,8 +79,10 @@
             <div class="form-group">
                 <label for="exampleInputPassword1">Status</label>
                 <select class="form-control" id="exampleFormControlSelect1" name="is_active">
+
                     <option value="1" {{ old('is_active') == 1 ? 'selected' : '' }}>Active</option>
                     <option value="2" {{ old('is_active') == 2 ? 'selected' : '' }}>Not Active</option>
+                    
                 </select>
             </div>
             {{-- end form untuk status --}}
