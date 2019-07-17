@@ -49,10 +49,10 @@
                 </div>
                 {{-- End form untuk email --}}
 
-                {{-- Form untuk password --}}
+                {{-- Form untuk old password --}}
                 <div class="form-group{{ $errors->has('old_password') ? ' has-error' : '' }}">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" name="old_password" value="{{$user->password}}">
+                    
+                    <input type="hidden" class="form-control" name="old_password" value="{{$user->password}}">
 
                         @if ($errors->has('password'))
                             <span class="help-block">
@@ -61,7 +61,7 @@
                         @endif
 
                 </div>
-                {{-- end form untuk password --}}
+                {{-- end form untuk old password --}}
                 
                 {{-- Form untuk password --}}
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

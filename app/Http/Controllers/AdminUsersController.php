@@ -10,6 +10,7 @@ use App\Http\Requests\UsersEditRequest;
 use App\User;
 use App\Role;
 use App\Photo;
+use Auth;
 
 class AdminUsersController extends Controller
 {
@@ -110,7 +111,7 @@ class AdminUsersController extends Controller
     public function update(UsersEditRequest $request, $id)
     {
         //
-        $user = User::findOrFail($id);
+        // $user = User::findOrFail($id);
 
         $input = $request->all();
 
@@ -133,15 +134,16 @@ class AdminUsersController extends Controller
             # code...
             $input['password'] = $request->input('old_password');
 
-
         } else {
 
             # code...
             $input['password'] = bcrypt($request->input('password'));
-            
+
         }
             
-        $user->update($input);
+        // $user->update($input);
+
+        Auth::user()->whereId($id)->first()->update($input);
         
         return redirect('/admin/users')->with('success', 'The User Has Been Updated');
 
