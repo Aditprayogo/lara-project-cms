@@ -17,6 +17,7 @@
         <br>
 
         <form action="{{route('admin.posts.update', ['id' => $post->id])}}" method="POST" enctype="multipart/form-data">
+            
             {{ csrf_field() }}
 
             <input type="hidden" name="_method" value="PUT">
@@ -55,9 +56,12 @@
                     @foreach ($categories as $category)
 
                         @if ($post->category_id == $category->id)
+
                             <option value="{{$category->id}}" selected>{{$category->name}}</option>
                         @else
+
                             <option value="{{$category->id}}">{{$category->name}}</option>
+                            
                         @endif
                         
                     @endforeach

@@ -12,8 +12,6 @@
                 <th scope="col">Category</th>
                 <th scope="col">Created</th>
                 <th scope="col">Updated</th>
-
-                
             </tr>
             </thead>
             <tbody>

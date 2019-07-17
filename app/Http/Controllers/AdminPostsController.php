@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\PostsCreateRequest;
+use App\Http\Requests\AdminPostsEditRequest;
 use App\Post;
 use App\Photo;
 use App\User;
@@ -67,8 +68,9 @@ class AdminPostsController extends Controller
 
         // Post::create($input);
         
+
         //mngambil user yang sekarang login
-        $user = Auth::user();
+        // $user = Auth::user();
 
         $input = $request->all();
 
@@ -84,7 +86,7 @@ class AdminPostsController extends Controller
 
         }
 
-        $user->posts()->create($input);
+        Auth::user()->posts()->create($input);
 
         return redirect('/admin/posts')->with('success', 'The Post Has Been Created');
     }
@@ -121,7 +123,7 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostsCreateRequest $request, $id)
+    public function update(AdminPostsEditRequest $request, $id)
     {
         //
 
