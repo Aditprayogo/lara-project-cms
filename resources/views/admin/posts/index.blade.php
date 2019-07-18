@@ -4,6 +4,8 @@
 
     <h1>Posts Index</h1>
 
+   
+
     <?php $i = 1; ?>
     <table class="table table-bordered">
         <thead>
@@ -40,9 +42,6 @@
                         <td>{{$post->created_at->diffForHumans()}}</td>
                         <td>{{$post->updated_at->diffForHumans()}}</td>
                         <td>
-                            <a href="{{route('admin.posts.edit', ['id' => $post->id])}}" class="btn btn-success fas fa-edit"></a> 
-
-                            <br>
                             
                             <form action="{{route('admin.posts.destroy', ['id' => $post->id])}}" method="POST">
                                 
@@ -50,8 +49,13 @@
 
                                 <input type="hidden" value="DELETE" name="_method">
 
-                                <button type="submit" class="btn btn-danger fas fa-user-minus" onclick="return confirm('Are You sure want to delete this post ?')"></button>
+                                <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are You sure want to delete this post ?')"></button>
+                                
+                                {{-- Untuk edit user --}}
+                                <a href="{{route('admin.posts.edit', ['id' => $post->id])}}" class="btn btn-success fas fa-edit"></a> 
+
                             </form>
+                            
                         </td>
                     </tr>                   
                 @endforeach           

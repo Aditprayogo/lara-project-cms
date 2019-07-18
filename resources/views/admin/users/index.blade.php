@@ -49,8 +49,6 @@
                         <td>{{$user->created_at->diffForHumans()}}</td>
                         <td>{{$user->updated_at->diffForHumans()}}</td>
                         <td>
-                            <a href="{{route('admin.users.edit', ['id' => $user->id])}}" class="btn btn-success fas fa-edit"></a> 
-                            <br>
                             
                             <form action="{{route('admin.users.destroy', ['id'=>$user->id])}}" method="POST">
 
@@ -58,6 +56,10 @@
                                 <input type="hidden" name="_method" value="DELETE">
 
                                 <button type="submit" class="btn btn-danger fas fa-user-minus" onclick="return confirm('Are You Sure want to delete ? ')"></button>
+
+                                <a href="{{route('admin.users.edit', ['id' => $user->id])}}" class="btn btn-success fas fa-edit"></a> 
+                            
+                            
 
                             </form>
                         </td>

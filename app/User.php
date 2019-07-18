@@ -39,6 +39,7 @@ class User extends Authenticatable
 
     }
 
+    //creating middleware auth
     public function isAdmin()
     {
 

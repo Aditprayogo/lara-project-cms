@@ -51,8 +51,8 @@
 
                 {{-- Form untuk old password --}}
                 <div class="form-group{{ $errors->has('old_password') ? ' has-error' : '' }}">
-                    
-                    <input type="hidden" class="form-control" name="old_password" value="{{$user->password}}">
+                    <label for="exampleInputPassword1">Old Password</label>
+                    <input type="password" class="form-control" name="old_password" value="">
 
                         @if ($errors->has('password'))
                             <span class="help-block">

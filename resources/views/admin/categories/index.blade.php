@@ -4,7 +4,7 @@
 
     <h1>Categories</h1>
     <?php $i=1; ?>
-    <div class="col-sm-6">
+    <div class="col-sm-8">
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -30,8 +30,7 @@
                             <td>{{$category->updated_at->diffForHumans()}}</td>
                             <td>
 
-                                <a href="{{route('admin.categories.edit', ['id' => $category->id])}}" class="btn btn-success fas fa-edit">
-                                </a>
+                               
 
                                 <form action="{{route('admin.categories.destroy', ['id' => $category->id])}}" method="POST">
 
@@ -40,6 +39,9 @@
                                     <input type="hidden" name="_method" value="DELETE">
 
                                     <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are you sure want to delete')"></button>
+
+                                    <a href="{{route('admin.categories.edit', ['id' => $category->id])}}" class="btn btn-success fas fa-edit">
+                                    </a>
                                     
                                 </form>
 

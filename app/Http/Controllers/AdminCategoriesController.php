@@ -49,6 +49,7 @@ class AdminCategoriesController extends Controller
         Category::create($request->all());
 
         return redirect('admin/categories')->with('success', 'Category has been created');
+        
     }
 
     /**

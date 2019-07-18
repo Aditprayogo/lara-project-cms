@@ -27,6 +27,7 @@ class UsersEditRequest extends Request
             //
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
+            'old_password' => 'required',
             'password' => 'confirmed',
             'is_active' => 'required',
             'role_id' => 'required',

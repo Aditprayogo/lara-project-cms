@@ -111,9 +111,11 @@ class AdminUsersController extends Controller
     public function update(UsersEditRequest $request, $id)
     {
         //
-        // $user = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
         $input = $request->all();
+
+        $hashedpassword = $user->password;
 
         if ($file = $request->file('photo_id')) {
 
@@ -128,22 +130,51 @@ class AdminUsersController extends Controller
             
         }
 
-        //Jika password kosong
-        if ($input['password'] == '') {
+        //check jika old password sama dengan password di database
+        if (\Hash::check($input['old_password'], $hashedpassword)) {
 
             # code...
-            $input['password'] = $request->input('old_password');
+
+            //check jika input password baru tidak sama dengan password di database
+            if (!\Hash::check($request->input('password'), $hashedpassword)) {
+
+                # code...
+                
+                //jika password yang di inputkan kosong
+                if ($input['password'] == '') {
+
+                    # code...
+                    $input['password'] = $hashedpassword;
+
+                } else {
+
+                    # code...
+                    $input['password'] = bcrypt($request->input('password'));
+                }
+               
+                
+            } else {
+
+                # code...
+                //check jika input password baru sama dengan password di database
+                session()->flash('error', 'The new password cannot same as old password');
+                return redirect()->back();
+            }
 
         } else {
 
             # code...
-            $input['password'] = bcrypt($request->input('password'));
+            //check jika old password tidak sama dengan password di database
+            session()->flash('error', 'The old password does not same in database');
+            return redirect()->back();
 
         }
-            
-        // $user->update($input);
 
-        Auth::user()->whereId($id)->first()->update($input);
+        // Auth::user()->findOrFail($id)->update($input);
+            
+        $user->update($input);
+
+      
         
         return redirect('/admin/users')->with('success', 'The User Has Been Updated');
 
