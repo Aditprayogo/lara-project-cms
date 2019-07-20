@@ -152,7 +152,10 @@ class AdminPostsController extends Controller
         }
 
         //mendapatkan user yang sedang login
-        Auth::user()->posts()->whereId($id)->first()->update($input);
+        Auth::user()->posts()->findOrFail($id)->update($input);
+
+
+        // Auth::user()->posts()->whereId($id)->first()->update($input);
 
         // $post->update($input);
 

@@ -54,9 +54,9 @@
                     <label for="exampleInputPassword1">Old Password</label>
                     <input type="password" class="form-control" name="old_password" value="">
 
-                        @if ($errors->has('password'))
+                        @if ($errors->has('old_password'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('old_password') }}</strong>
+                                <strong>{{ $errors->first('') }}</strong>
                             </span>
                         @endif
 
@@ -64,11 +64,11 @@
                 {{-- end form untuk old password --}}
                 
                 {{-- Form untuk password --}}
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('new_password') ? ' has-error' : '' }}">
                     <label for="exampleInputPassword1">New Password</label>
-                    <input type="password" class="form-control" name="password" >
+                    <input type="password" class="form-control" name="new_password" >
 
-                        @if ($errors->has('password'))
+                        @if ($errors->has('new_password'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('password') }}</strong>
                             </span>
@@ -80,9 +80,9 @@
                 {{-- Form COnfirm password --}}
                 <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                     <label for="password-confirm">Confirm Password</label>
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                    <input id="password-confirm" type="password" class="form-control" name="new_password_confirmation">
 
-                        @if ($errors->has('password_confirmation'))
+                        @if ($errors->has('new_password_confirmation'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
                             </span>

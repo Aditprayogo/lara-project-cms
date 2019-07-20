@@ -136,20 +136,21 @@ class AdminUsersController extends Controller
             # code...
 
             //check jika input password baru tidak sama dengan password di database
-            if (!\Hash::check($request->input('password'), $hashedpassword)) {
+            if (!\Hash::check($input['new_password'], $hashedpassword)) {
 
                 # code...
                 
                 //jika password yang di inputkan kosong
-                if ($input['password'] == '') {
+                if ($input['new_password'] == '') {
 
                     # code...
-                    $input['password'] = $hashedpassword;
+                    $input['new_password'] = $hashedpassword;
 
                 } else {
 
                     # code...
-                    $input['password'] = bcrypt($request->input('password'));
+                    // Jika tidak kosong
+                    $user->password = bcrypt($request->input('new_password'));
                 }
                
                 

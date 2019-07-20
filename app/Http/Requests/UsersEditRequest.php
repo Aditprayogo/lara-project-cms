@@ -28,7 +28,7 @@ class UsersEditRequest extends Request
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'old_password' => 'required',
-            'password' => 'confirmed',
+            'new_password' => 'confirmed',
             'is_active' => 'required',
             'role_id' => 'required',
             'photo_id' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
