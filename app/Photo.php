@@ -17,4 +17,19 @@ class Photo extends Model
         # code...
         return $this->uploads . $value;
     }
+
+    public function user()
+    {
+        # code...
+        return $this->hasOne('App\User');
+    }
+
+    public function post()
+    {
+        # code...
+        return $this->hasOneThrough('App\Post');
+    }
+
+    
+    
 }
