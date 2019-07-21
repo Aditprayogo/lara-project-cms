@@ -59,9 +59,8 @@
 
                                 <a href="{{route('admin.users.edit', ['id' => $user->id])}}" class="btn btn-success fas fa-edit"></a> 
                             
-                            
-
                             </form>
+                            
                         </td>
                     </tr>    
                 @endforeach

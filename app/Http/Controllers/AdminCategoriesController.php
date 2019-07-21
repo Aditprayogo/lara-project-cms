@@ -94,6 +94,7 @@ class AdminCategoriesController extends Controller
         Category::findOrFail($id)->update($input);
 
         return redirect('admin/categories')->with('success', 'The Category has been edited');
+        
     }
 
     /**

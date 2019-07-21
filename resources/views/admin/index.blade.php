@@ -26,10 +26,10 @@
                 <li>
                     @if (Auth::user()->is_active == 1)
 
-                        Status : Active 
-             
+                        Status :    <span class="label label-primary">Active</span> 
+                        
                     @else 
-                        Status : Non Active
+                        Status :    <span class="label label-danger">Not Active</span> 
              
                     @endif
                 </li>
@@ -41,7 +41,7 @@
         <div class="well">
             <ul>
                 <li>
-                    Current time : {{Carbon\Carbon::now()->format('d-m-Y')}}
+                    Current date : {{Carbon\Carbon::now()->format('d-m-Y')}}
                 </li>
             </ul>
         </div>

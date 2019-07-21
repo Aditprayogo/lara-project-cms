@@ -27,9 +27,13 @@
                     <tr>
                         <th scope="row">{{$i++}}</th>
                         <td>
+
                             @if ($post->photo)
                                 <img src="{{$post->photo->file}}" alt="" width="60">
+                            @else 
+                                <img src="/images/noimg.jpg" alt="" width="60">
                             @endif
+
                         </td>
                         <td>{{$post->title}}</td>
                         <td>{{ str_limit($post->body , 40) }}</td>

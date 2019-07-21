@@ -27,7 +27,7 @@ class PostsCreateRequest extends Request
             //
             'title'         => 'required|max:255',
             'body'          => 'required',
-            'photo_id'      => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo_id'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category_id'   => 'required'
         ];
     }
