@@ -180,4 +180,10 @@ class AdminPostsController extends Controller
 
         return redirect('admin/posts')->with('success', 'The Post Has been deleted');
     }
+
+    public function post($id)
+    {
+        # code...
+        return view('layouts.blog-home');
+    }
 }

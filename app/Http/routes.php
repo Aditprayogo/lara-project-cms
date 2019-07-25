@@ -21,7 +21,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 
-
+Route::get('/post/{id}', 'AdminPostsController@post');
 
 Route::group(['middleware' => 'admin'] ,function(){
 
