@@ -9,7 +9,7 @@
 
     {{-- Untuk image --}}
     <div class="col-sm-3">
-        
+
         @if ($user->photo)
             <img src="{{$user->photo->file}}" alt="" class="img-responsive img-rounded">
         @else 
@@ -113,7 +113,8 @@
                 <div class="form-group">
                     <label for="exampleInputPassword1">Status</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="is_active" value="{{$user->is_active}}">
-                        @if ($user->is_active == 1)
+
+                        @if ( $user->is_active == 1 )
                             <option value="1" selected>Active</option>
                             <option value="2">Not Active</option>
                         @else 

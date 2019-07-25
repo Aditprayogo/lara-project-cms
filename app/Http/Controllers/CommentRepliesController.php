@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Requests\MediaCreateRequest;
-use App\Photo;
 
-class AdminMediasController extends Controller
+class CommentRepliesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +16,6 @@ class AdminMediasController extends Controller
     public function index()
     {
         //
-        $photos = Photo::all();
-
-        return view('admin.media.index')->with('photos', $photos);
     }
 
     /**
@@ -31,7 +26,6 @@ class AdminMediasController extends Controller
     public function create()
     {
         //
-        return view('admin.media.create');
     }
 
     /**
@@ -40,23 +34,9 @@ class AdminMediasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MediaCreateRequest $request)
+    public function store(Request $request)
     {
         //
-        $input = $request->all();
-
-        if ($file = $request->file('file')) {
-            # code...
-            $name = time() . $file->getClientOriginalName();
-
-            $file->move('images', $name);
-
-            $input['file'] = $name;
-        }
-
-        Photo::create($input);
-
-        return redirect('admin/medias')->with('success', 'The image has been uploaded');
     }
 
     /**
@@ -68,10 +48,6 @@ class AdminMediasController extends Controller
     public function show($id)
     {
         //
-        $photo = Photo::findOrFail($id);
-
-        return view('admin.media.view')->with('photo', $photo);
-
     }
 
     /**
@@ -106,12 +82,5 @@ class AdminMediasController extends Controller
     public function destroy($id)
     {
         //
-        $photo = Photo::findOrFail($id);
-
-        unlink( public_path() . $photo->file );
-
-        $photo->delete();
-
-        return redirect('admin/medias')->with('success', 'The Photo Has Been Deleted');
     }
 }
