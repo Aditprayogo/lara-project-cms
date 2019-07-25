@@ -108,6 +108,8 @@ class AdminMediasController extends Controller
         //
         $photo = Photo::findOrFail($id);
 
+        unlink(public_path() . $photo->file);
+
         $photo->delete();
 
         return redirect('admin/medias')->with('success', 'The Photo Has Been Deleted');

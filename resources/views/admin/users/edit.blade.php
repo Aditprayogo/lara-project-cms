@@ -9,6 +9,7 @@
 
     {{-- Untuk image --}}
     <div class="col-sm-3">
+        
         @if ($user->photo)
             <img src="{{$user->photo->file}}" alt="" class="img-responsive img-rounded">
         @else 

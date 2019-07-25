@@ -17,8 +17,6 @@
             </tr>
             </thead>
             <tbody>
-            
-
                 @if ($categories)
 
                     @foreach ($categories as $category)
@@ -50,11 +48,7 @@
 
                     @endforeach
                     
-                @endif
-                
-                
-            
-            
+                @endif      
             </tbody>
         </table>
     </div>

@@ -26,7 +26,7 @@
                         <th scope="row">{{$i++}}</th>
                         
                         <td><img src="{{$photo->file}}" alt="" height="80"></td>
-                        <td>{{$photo->created_at}}. ({{$photo->created_at->diffForHumans()}})</td>
+                        <td>{{$photo->created_at}} . ({{$photo->created_at->diffForHumans()}})</td>
                     
                        
                         <td>
@@ -36,9 +36,12 @@
 
                                 <input type="hidden" name="_method" value="DELETE">
 
+                                {{-- btn delete --}}
                                 <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are you sure want to delete')"></button>
-
+                                
+                                {{-- btn untuk view--}}
                                 <a href="{{route('admin.medias.show', ['id' => $photo->id])}}" class="btn btn-warning fas fa-eye"></a>
+                                
                             </form>
 
                         </td>

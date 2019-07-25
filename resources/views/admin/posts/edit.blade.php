@@ -11,6 +11,10 @@
         @if ($post->photo)
 
             <img src="{{$post->photo->file}}" alt="" class="img-responsive img-rounded" width="50%">
+
+        @else 
+
+            <img src="/images/noimg.jpg" alt="" class="img-rounded img-responsive">
             
         @endif
 
@@ -74,7 +78,7 @@
             {{-- Form untuk cover_image --}}
              <div class="form group{{ $errors->has('photo_id') ? ' has-error' : '' }}">
                 <label for="cover_image">Image</label>
-                <input type="file" name="photo_id" value="{{$post->photo->file}}">
+                <input type="file" name="photo_id">
 
                 @if ($errors->has('photo_id'))
                     <span class="help-block">
