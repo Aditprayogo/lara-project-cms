@@ -13,7 +13,8 @@ class Comment extends Model
         'email',
         'body',
         'post_id',
-        'is_active'
+        'is_active',
+        'photo'
 
     ];
 

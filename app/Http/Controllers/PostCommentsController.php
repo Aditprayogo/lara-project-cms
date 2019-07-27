@@ -56,7 +56,7 @@ class PostCommentsController extends Controller
             'email' => $user->email,
             'body' => $request->input('body'),
             'photo' => $user->photo->file
-                
+            
         ];   
 
         Comment::create($data);

@@ -77,7 +77,7 @@
         <div class="media">
             <a class="pull-left" href="#">
                 @if ($comment->photo)
-                    <img class="media-object" src="{{$comment->user->photo_id}}" alt="">
+                    <img class="media-object" src="{{$comment->photo}}" alt="" width="64" height="64">
                 @else 
                     <img class="media-object" src="http://placehold.it/64x64" alt="">
                 @endif    
@@ -105,16 +105,21 @@
                                                 {{ csrf_field() }}
 
                                                 <input type="hidden" name="_method" value="PUT">
-
-                                                <textarea name="body" id="" cols="70" rows="30">{{$comment->body}}</textarea>
+                                                
+                                                <div class="form-group">
+                                                    <textarea name="body" id="" cols="30" rows="10" class="form-control">{{$comment->body}}</textarea>
+                                                </div>
+                                                
 
                                                 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-primary">Save changes</button> 
                                                 </div>
-                                        </div>
                                             </form>
+
+                                        </div>         
+                                      {{-- End Modal Body --}}
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +132,7 @@
     
                                 <input type="hidden" name="_method" value="DELETE">
     
-                                <button type="submit" class="label label-danger">Delete</button>
+                                <button type="submit" class="label label-danger" onclick="return confirm('Are you sure want to delete it ? ')">Delete</button>
                             </form>           
                         </small>
 
