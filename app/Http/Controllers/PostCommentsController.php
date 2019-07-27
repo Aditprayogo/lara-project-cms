@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Post;
+use App\Comment;
+use Auth;
 
 class PostCommentsController extends Controller
 {
@@ -38,7 +41,21 @@ class PostCommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $user = Auth::user();
+
+        $data = [
+
+                'post_id' => $request->input('post_id'),
+                'author' => $user->name,
+                'email' => $user->email,
+                'body' => $request->input('body'),
+                
+        ];   
+
+        Comment::create($data);
+
+        return redirect()->back()->with('success', 'The comment has been created');
     }
 
     /**

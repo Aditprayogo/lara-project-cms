@@ -13,6 +13,7 @@ use App\Photo;
 use App\User;
 use Auth;
 use App\Category;
+use App\Comment;
 
 class AdminPostsController extends Controller
 {
@@ -184,6 +185,13 @@ class AdminPostsController extends Controller
     public function post($id)
     {
         # code...
-        return view('layouts.blog-home');
+
+        $post = Post::findOrFail($id);
+
+        $categories = Category::all();
+
+        $comments = Comment::all();
+
+        return view('post', compact('post', 'categories', 'comments'));
     }
 }
