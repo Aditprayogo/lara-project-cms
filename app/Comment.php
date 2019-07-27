@@ -28,4 +28,10 @@ class Comment extends Model
         # code...
         return $this->hasMany('App\CommentReply');
     }
+
+    public function user()
+    {
+        # code...
+        return $this->belongsTo('App\User');
+    }
 }

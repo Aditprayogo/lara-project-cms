@@ -18,9 +18,10 @@ class PostCommentsController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::all();
+        // $posts = Post::all();
 
-        return view('admin.comments.index');
+        return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -44,12 +45,17 @@ class PostCommentsController extends Controller
         
         $user = Auth::user();
 
+        $this->validate($request, [
+            'body' => 'required'
+        ]);
+
         $data = [
 
-                'post_id' => $request->input('post_id'),
-                'author' => $user->name,
-                'email' => $user->email,
-                'body' => $request->input('body'),
+            'post_id' => $request->input('post_id'),
+            'author' => $user->name,
+            'email' => $user->email,
+            'body' => $request->input('body'),
+            'photo' => $user->photo->file
                 
         ];   
 
@@ -101,5 +107,9 @@ class PostCommentsController extends Controller
     public function destroy($id)
     {
         //
+        Comment::findOrFail($id)->delete();
+
+        return redirect()->back()->with('success', 'Comment has been deleted');
+
     }
 }
