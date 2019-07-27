@@ -84,7 +84,54 @@
             </a>
             <div class="media-body">
                 <h4 class="media-heading">{{$comment->author}}
-                    <small>{{$comment->created_at->diffforHumans()}}</small>
+                    <small>{{$comment->updated_at->diffforHumans()}}</small>
+                    
+                    <div class="pull-right">
+
+                        <small>
+                            <a href="" data-toggle="modal" data-target="#myModal" class="label label-primary">Edit</a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Edit Comment</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">
+
+                                                {{ csrf_field() }}
+
+                                                <input type="hidden" name="_method" value="PUT">
+
+                                                <textarea name="body" id="" cols="70" rows="30">{{$comment->body}}</textarea>
+
+                                                
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button> 
+                                                </div>
+                                        </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </small>
+
+                        <small>
+                            <form action="{{route('admin.comments.destroy', ['id' => $comment->id])}}" method="POST">
+
+                                {{ csrf_field() }}
+    
+                                <input type="hidden" name="_method" value="DELETE">
+    
+                                <button type="submit" class="label label-danger">Delete</button>
+                            </form>           
+                        </small>
+
+                    </div> 
                 </h4>
                 {{$comment->body}}
             </div>
@@ -160,6 +207,30 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
         </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
+        $(document).on('click', 'a.jquery-postback', function(e) {
+            e.preventDefault(); // does not go through with the link.
+        
+            var $this = $(this);
+        
+            $.post({
+                type: $this.data('method'),
+                url: $this.attr('href')
+            }).done(function (data) {
+                alert('success');
+                console.log(data);
+            });
+        });
+    </script>
+    
 @endsection
 
 @section('footer')

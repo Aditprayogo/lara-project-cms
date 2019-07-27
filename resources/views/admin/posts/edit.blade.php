@@ -4,10 +4,6 @@
 
     <h1>Edit Posts</h1>
 
-   
-
-  
-
         @if ($post->photo)
 
             <img src="{{$post->photo->file}}" alt="" class="img-responsive img-rounded" width="50%">

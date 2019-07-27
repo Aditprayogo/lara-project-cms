@@ -96,6 +96,14 @@ class PostCommentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $comment = Comment::findOrFail($id);
+
+        $input = $request->all();
+
+        $comment->update($input);
+
+        return redirect()->back()->with('success', 'The Comment has been Edited');
+
     }
 
     /**

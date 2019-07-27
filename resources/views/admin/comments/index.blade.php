@@ -14,6 +14,7 @@
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
             <th scope="col">Post</th>
+            <th scope="col">Status</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -30,6 +31,36 @@
                         <a href="{{route('home.post', $comment->post->id)}}" class="fas fa-eye btn btn-primary"></a>
                     </td>
                     <td>
+                        @if ($comment->is_active == 1)
+
+                            <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">  
+
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="PUT">
+
+                                <input type="hidden" name="is_active" id="" value="0">
+
+                                <button type="submit" class="btn btn-danger">Un-Approve</button>
+
+                            </form>     
+                        @else 
+
+                            <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">  
+
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="PUT">
+
+                                <input type="hidden" name="is_active" id="" value="1">
+
+                                <button type="submit" class="btn btn-primary">Approve</button>
+
+                            </form>     
+                            
+                        @endif
+                       
+                    </td>
+                    <td>
+
                         <form action="{{route('admin.comments.destroy', ['id' => $comment->id])}}" method="POST">
 
                             {{ csrf_field() }}
@@ -37,8 +68,11 @@
                             <input type="hidden" name="_method" value="DELETE">
 
                             <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are you sure want to delete this comment ? ')"></button>
+
                         </form>
+
                     </td>
+                   
                 </tr>              
             @endforeach
           
