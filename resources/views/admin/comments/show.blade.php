@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>All Comment</h1>
+    <h1>Comments for {{str_limit($post->title, 20)}}</h1>
     <?php $i = 1; ?>
     <table class="table table-bordered">
         <thead>
@@ -13,13 +13,14 @@
             <th scope="col">Email</th>
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
-            <th scope="col">View Post</th>
-            <th scope="col">Title Post</th>
+            <th scope="col">Post</th>
+            <th scope="col">Post Title</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
+
             @foreach ($comments as $comment)         
                 <tr>
                     <th scope="row">{{$i++}}</th>
@@ -29,14 +30,14 @@
                     <td>{{$comment->created_at->diffForHumans()}}</td>
                     <td>{{$comment->updated_at->diffForHumans()}}</td>
                     <td>
-                        <a href="{{route( 'home.post', ['id' => $comment->post->id] )}}" class="fas fa-eye btn btn-primary"></a>
+                        <a href="{{route('home.post', $comment->post->id)}}" class="fas fa-eye btn btn-primary"></a>
                     </td>
                     <td>
-                         @foreach ($posts as $post)
-                            @if ($comment->post_id == $post->id)
-                                {{$post->title}}
-                            @endif
-                        @endforeach                   
+                        @if ($post->id == $comment->post_id)
+                        
+                            {{$post->title}}
+                            
+                        @endif
                     </td>
                     <td>
                         @if ($comment->is_active == 1)

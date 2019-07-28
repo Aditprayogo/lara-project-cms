@@ -58,6 +58,9 @@
                                 <button type="submit" class="btn btn-danger fas fa-user-minus" onclick="return confirm('Are You Sure want to delete ? ')"></button>
 
                                 <a href="{{route('admin.users.edit', ['id' => $user->id])}}" class="btn btn-success fas fa-edit"></a> 
+
+                                {{-- Untuk melihat user dengan post tertentu --}}
+                                <a href="{{route('admin.posts.show', ['id' => $user->id])}}" class="fas fa-eye btn btn-warning"></a>
                             
                             </form>
                             

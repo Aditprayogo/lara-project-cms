@@ -14,6 +14,7 @@ class Comment extends Model
         'body',
         'post_id',
         'is_active',
+        'user_id',
         'photo'
 
     ];

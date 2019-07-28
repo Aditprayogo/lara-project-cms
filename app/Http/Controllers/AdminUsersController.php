@@ -83,6 +83,7 @@ class AdminUsersController extends Controller
     public function show($id)
     {
         //
+      
     }
 
     /**
@@ -95,6 +96,7 @@ class AdminUsersController extends Controller
     {
         //
         $user = User::findOrFail($id);
+        
         $roles = Role::all();
 
         return view('admin.users.edit', compact('user', 'roles'));

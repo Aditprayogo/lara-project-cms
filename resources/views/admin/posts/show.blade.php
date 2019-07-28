@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Posts Index</h1>
+    <h1>Posts {{$user->name}}</h1>
 
    
 

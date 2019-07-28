@@ -26,7 +26,9 @@ class AdminPostsController extends Controller
     {
         //
         $categories = Category::all();
+
         $posts = Post::all();
+
         return view('admin.posts.index', compact('categories', 'posts'));
     }
 
@@ -73,7 +75,7 @@ class AdminPostsController extends Controller
         
 
         //mngambil user yang sekarang login
-        // $user = Auth::user();
+        $user = Auth::user();
 
         $input = $request->all();
 
@@ -84,16 +86,16 @@ class AdminPostsController extends Controller
 
             $file->move('images', $name);
 
-            $photo = Photo::create(['file' => $name]);
+            $photo = Photo::create( ['file' => $name] );
 
             $input['photo_id'] = $photo->id;
 
         }
 
         // //mendapatkan user yang sedang login
-        Auth::user()->posts()->create($input);
+        // Auth::user()->posts()->create($input);
 
-        // $user->posts()->create($input);
+        $user->posts()->create($input);
 
         return redirect('/admin/posts')->with('success', 'The Post Has Been Created');
     }
@@ -106,7 +108,11 @@ class AdminPostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $posts = $user->posts;
+
+        return view('admin.posts.show', compact('user', 'posts'));
     }
 
     /**

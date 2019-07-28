@@ -19,9 +19,10 @@ class PostCommentsController extends Controller
     public function index()
     {
         $comments = Comment::all();
-        // $posts = Post::all();
 
-        return view('admin.comments.index', compact('comments'));
+        $posts = Post::all();
+
+        return view('admin.comments.index', compact('comments' , 'posts'));
     }
 
     /**
@@ -46,12 +47,15 @@ class PostCommentsController extends Controller
         $user = Auth::user();
 
         $this->validate($request, [
+
             'body' => 'required'
+            
         ]);
 
         $data = [
 
             'post_id' => $request->input('post_id'),
+            'user_id' => $user->id,
             'author' => $user->name,
             'email' => $user->email,
             'body' => $request->input('body'),
@@ -72,7 +76,14 @@ class PostCommentsController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $post = Post::findOrFail($id);
+
+        // Urutkan comment berdasarkan spesific post id
+        $comments = $post->comments;
+
+        return view('admin.comments.show', compact('comments' , 'post'));
+
     }
 
     /**
