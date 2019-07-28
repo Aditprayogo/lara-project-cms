@@ -171,6 +171,8 @@
                             </h4>
                             {{$comment->body}}
 
+                            <hr>
+
                             <!-- Nested Comment -->
                             {{-- comment replies --}}
                             @foreach ($replies as $reply)
@@ -235,6 +237,19 @@
                                                             </div>
                                                         </div>
                                                         {{-- end modal --}}         
+                                                    </small>
+
+                                                    <small>
+
+                                                        <form action="{{route('admin.comment.replies.destroy', ['id' => $reply->id])}}" method="POST">
+
+                                                            {{ csrf_field() }}
+
+                                                            <input type="hidden" name="_method" value="DELETE">
+
+                                                            <button type="submit" class="label label-danger" onclick="return confirm('Are you sure want to delete it ? ')">Delete</button>
+                                                        </form>
+                                                        
                                                     </small>
                                                     
                                                 @endif
