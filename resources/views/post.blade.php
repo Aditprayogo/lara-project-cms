@@ -75,6 +75,7 @@
         @foreach ($comments as $comment)
               
         <div class="media">
+
             <a class="pull-left" href="#">
                 @if ($comment->photo)
                     <img class="media-object" src="{{$comment->photo}}" alt="" width="64" height="64">
@@ -82,16 +83,22 @@
                     <img class="media-object" src="http://placehold.it/64x64" alt="">
                 @endif    
             </a>
+            
             <div class="media-body">
                 <h4 class="media-heading">{{$comment->author}}
+
                     <small>{{$comment->updated_at->diffforHumans()}}</small>
                     
                     <div class="pull-right">
 
+                        {{-- btn edit --}}
                         <small>
-                            <a href="" data-toggle="modal" data-target="#myModal" class="label label-primary">Edit</a>
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                             <a href="" data-toggle="modal" data-target="#myModal{{$comment->id}}" class="label label-primary">Edit</a>   
+                        </small>
+
+                        <small>
+                              <!-- Modal -->
+                            <div class="modal fade" id="myModal{{$comment->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -106,9 +113,15 @@
 
                                                 <input type="hidden" name="_method" value="PUT">
                                                 
-                                                <div class="form-group">
-                                                    <textarea name="body" id="" cols="30" rows="10" class="form-control">{{$comment->body}}</textarea>
-                                                </div>
+                                                <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+                                                        <textarea class="form-control" rows="3" name="body">{{$comment->body}}</textarea>
+                                
+                                                        @if ($errors->has('body'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('body') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
                                                 
 
                                                 
@@ -116,6 +129,7 @@
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-primary">Save changes</button> 
                                                 </div>
+
                                             </form>
 
                                         </div>         
@@ -123,8 +137,10 @@
                                     </div>
                                 </div>
                             </div>
+                            {{-- end modal --}}         
                         </small>
 
+                        {{-- delete button --}}
                         <small>
                             <form action="{{route('admin.comments.destroy', ['id' => $comment->id])}}" method="POST">
 
@@ -137,8 +153,10 @@
                         </small>
 
                     </div> 
+                {{-- End Pull right --}}
                 </h4>
                 {{$comment->body}}
+                
             </div>
         </div>
 
@@ -211,31 +229,12 @@
             <h4>Side Widget Well</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
         </div>
+        
 
 @endsection
 
 @section('scripts')
-    <script>
-        $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-        });
-        $(document).on('click', 'a.jquery-postback', function(e) {
-            e.preventDefault(); // does not go through with the link.
-        
-            var $this = $(this);
-        
-            $.post({
-                type: $this.data('method'),
-                url: $this.attr('href')
-            }).done(function (data) {
-                alert('success');
-                console.log(data);
-            });
-        });
-    </script>
-    
+   
 @endsection
 
 @section('footer')
