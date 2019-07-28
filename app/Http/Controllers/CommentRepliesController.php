@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Comment;
+use App\CommentReply;
+use App\Post;
+use App\User;
+use Auth;
 
 class CommentRepliesController extends Controller
 {
@@ -39,6 +44,33 @@ class CommentRepliesController extends Controller
         //
     }
 
+    public function createReply(Request $request)
+    {
+        //
+        $user = Auth::user();
+
+        $this->validate($request, [
+
+            'body' => 'required'
+            
+        ]);
+
+        $data = [
+
+            'comment_id' => $request->input('comment_id'),
+            'user_id' => $user->id,
+            'author' => $user->name,
+            'email' => $user->email,
+            'body' => $request->input('body'),
+            'photo' => $user->photo->file
+            
+        ];   
+
+        CommentReply::create($data);
+
+        return redirect()->back()->with('success', 'The comment has been created');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -71,6 +103,18 @@ class CommentRepliesController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $reply = CommentReply::findOrFail($id);
+
+        $this->validate($request, [
+            'body' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $reply->update($input);
+
+        return redirect()->back()->with('success', 'The Reply has been created');
     }
 
     /**

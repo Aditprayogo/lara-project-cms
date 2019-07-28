@@ -6,7 +6,8 @@
     <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">No</th>
+            
+            <th scope="col">Id</th>
             <th scope="col">name</th>
             <th scope="col">Photo</th>           
             <th scope="col">email</th>
@@ -23,7 +24,9 @@
 
                 @foreach ($users as $user)
                     <tr>
-                        <th scope="row">{{$i++}}</th>
+                        <td>
+                            {{$user->id}}
+                        </td>
                         <td>
                             {{$user->name}}
                         </td>

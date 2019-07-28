@@ -8,6 +8,7 @@
         <thead>
           <tr>
             <th scope="col">No</th>
+            <th scope="col">Id</th>
             <th scope="col">Comment</th>
             <th scope="col">Owner</th>
             <th scope="col">Email</th>
@@ -23,6 +24,9 @@
             @foreach ($comments as $comment)         
                 <tr>
                     <th scope="row">{{$i++}}</th>
+                    <td>
+                        {{$comment->id}}
+                    </td>
                     <td>{{str_limit($comment->body, 20)}}</td>
                     <td>{{$comment->author}}</td>
                     <td>{{$comment->email}}</td>

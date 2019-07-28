@@ -10,7 +10,8 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col">No</th>
+               
+                <th scope="col">id</th>
                 <th scope="col">Photo</th>
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
@@ -25,7 +26,8 @@
             @if ($posts)
                 @foreach ($posts as $post)
                     <tr>
-                        <th scope="row">{{$i++}}</th>
+                       
+                        <td>{{$post->id}}</td>
                         <td>
 
                             @if ($post->photo)

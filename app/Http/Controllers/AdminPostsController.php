@@ -14,6 +14,7 @@ use App\User;
 use Auth;
 use App\Category;
 use App\Comment;
+use App\CommentReply;
 
 class AdminPostsController extends Controller
 {
@@ -108,6 +109,7 @@ class AdminPostsController extends Controller
      */
     public function show($id)
     {
+        
         $user = User::findOrFail($id);
 
         $posts = $user->posts;
@@ -198,6 +200,10 @@ class AdminPostsController extends Controller
 
         $comments = Comment::all();
 
-        return view('post', compact('post', 'categories', 'comments'));
+        $user = User::findOrFail($id);
+
+        $replies = CommentReply::all();
+
+        return view('post', compact( 'post', 'categories', 'comments', 'user', 'replies' ));
     }
 }
