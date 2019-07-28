@@ -58,6 +58,8 @@
                                 {{-- Untuk edit user --}}
                                 <a href="{{route('admin.posts.edit', ['id' => $post->id])}}" class="btn btn-success fas fa-edit"></a> 
 
+                                <a href="{{route('home.post', ['id' => $post->id])}}" class="fas fa-eye btn btn-primary"></a>
+
                             </form>
                             
                         </td>

@@ -72,96 +72,106 @@
         <!-- Posted Comments -->
 
         <!-- Comment -->
+        
+
         @foreach ($comments as $comment)
-              
-        <div class="media">
 
-            <a class="pull-left" href="#">
-                @if ($comment->photo)
-                    <img class="media-object" src="{{$comment->photo}}" alt="" width="64" height="64">
-                @else 
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                @endif    
-            </a>
-            
-            <div class="media-body">
-                <h4 class="media-heading">{{$comment->author}}
+            @if ($post->id == $comment->post_id)
 
-                    <small>{{$comment->updated_at->diffforHumans()}}</small>
+                <div class="media">
+
+                    <a class="pull-left" href="#">
+                        @if ($comment->photo)
+                            <img class="media-object" src="{{$comment->photo}}" alt="" width="64" height="64">
+                        @else 
+                            <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        @endif    
+                    </a>
                     
-                    <div class="pull-right">
+                    <div class="media-body">
+                        <h4 class="media-heading">{{$comment->author}}
 
-                        {{-- btn edit --}}
-                        <small>
-                             <a href="" data-toggle="modal" data-target="#myModal{{$comment->id}}" class="label label-primary">Edit</a>   
-                        </small>
+                            <small>{{$comment->updated_at->diffforHumans()}}</small>
 
-                        <small>
-                              <!-- Modal -->
-                            <div class="modal fade" id="myModal{{$comment->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Edit Comment</h4>
-                                        </div>
-                                        <div class="modal-body">
+                        
+                            <div class="pull-right">
 
-                                            <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">
+                                {{-- btn edit --}}
+                                <small>
+                                    <a href="" data-toggle="modal" data-target="#myModal{{$comment->id}}" class="label label-primary">Edit</a>   
+                                </small>
 
-                                                {{ csrf_field() }}
-
-                                                <input type="hidden" name="_method" value="PUT">
-                                                
-                                                <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                                                        <textarea class="form-control" rows="3" name="body">{{$comment->body}}</textarea>
-                                
-                                                        @if ($errors->has('body'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('body') }}</strong>
-                                                            </span>
-                                                        @endif
-                                                    </div>
-                                                
-
-                                                
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button> 
+                                <small>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal{{$comment->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Edit Comment</h4>
                                                 </div>
+                                                <div class="modal-body">
 
-                                            </form>
+                                                    <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">
 
-                                        </div>         
-                                      {{-- End Modal Body --}}
+                                                        {{ csrf_field() }}
+
+                                                        <input type="hidden" name="_method" value="PUT">
+                                                        
+                                                        <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+                                                                <textarea class="form-control" rows="3" name="body">{{$comment->body}}</textarea>
+                                        
+                                                                @if ($errors->has('body'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('body') }}</strong>
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        
+
+                                                        
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button> 
+                                                        </div>
+
+                                                    </form>
+
+                                                </div>         
+                                            {{-- End Modal Body --}}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            {{-- end modal --}}         
-                        </small>
+                                    {{-- end modal --}}         
+                                </small>
 
-                        {{-- delete button --}}
-                        <small>
-                            <form action="{{route('admin.comments.destroy', ['id' => $comment->id])}}" method="POST">
+                                {{-- delete button --}}
+                                <small>
+                                    <form action="{{route('admin.comments.destroy', ['id' => $comment->id])}}" method="POST">
 
-                                {{ csrf_field() }}
-    
-                                <input type="hidden" name="_method" value="DELETE">
-    
-                                <button type="submit" class="label label-danger" onclick="return confirm('Are you sure want to delete it ? ')">Delete</button>
-                            </form>           
-                        </small>
+                                        {{ csrf_field() }}
+            
+                                        <input type="hidden" name="_method" value="DELETE">
+            
+                                        <button type="submit" class="label label-danger" onclick="return confirm('Are you sure want to delete it ? ')">Delete</button>
+                                    </form>           
+                                </small>
 
-                    </div> 
-                {{-- End Pull right --}}
-                </h4>
-                {{$comment->body}}
-                
-            </div>
-        </div>
+                            </div> 
+                        {{-- End Pull right --}}
+                        </h4>
+                        {{$comment->body}}
+                        
+                    </div>
+                </div>
+           
+            @endif
 
         @endforeach
 
+            
+      
+        
         <!-- Comment -->
         <div class="media">
             <a class="pull-left" href="#">
