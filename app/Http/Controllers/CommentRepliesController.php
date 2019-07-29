@@ -119,7 +119,7 @@ class CommentRepliesController extends Controller
 
         $reply->update($input);
 
-        return redirect()->back()->with('success', 'The Reply has been created');
+        return redirect()->back()->with('success', 'The Reply has been edited');
     }
 
     /**

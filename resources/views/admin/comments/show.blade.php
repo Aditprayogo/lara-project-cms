@@ -14,6 +14,7 @@
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
             <th scope="col">Post</th>
+            <th scope="col">View replies</th>
             <th scope="col">Post Title</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
@@ -31,6 +32,9 @@
                     <td>{{$comment->updated_at->diffForHumans()}}</td>
                     <td>
                         <a href="{{route('home.post', $comment->post->id)}}" class="fas fa-eye btn btn-primary"></a>
+                    </td>
+                    <td>
+                        <a href="{{route('admin.comment.replies.show', ['id' => $comment->id])}}" class="fas fa-eye btn btn-warning"></a>
                     </td>
                     <td>
                         @if ($post->id == $comment->post_id)
