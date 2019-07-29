@@ -198,11 +198,11 @@ class AdminPostsController extends Controller
 
         $categories = Category::all();
 
-        $comments = Comment::all();
+        $comments = Comment::orderBy('created_at', 'desc')->get();
 
         $user = User::findOrFail($id);
 
-        $replies = CommentReply::all();
+        $replies = CommentReply::orderBy('created_at', 'desc')->get();
 
         return view('post', compact( 'post', 'categories', 'comments', 'user', 'replies' ));
     }

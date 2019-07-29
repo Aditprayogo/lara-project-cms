@@ -11,10 +11,9 @@
 
     <title>Blog Post - Start Bootstrap Template</title>
 
-      <!-- Bootstrap Core CSS -->
-      <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
-      <link href="{{asset('css/libs.css')}}" rel="stylesheet">
+    <link href="{{asset('css/libs.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -118,6 +117,8 @@
 
     <!-- jQuery -->
     <script src="{{asset('js/libs.js')}}"></script>
+    
+    @yield('scripts')
 
 </body>
 

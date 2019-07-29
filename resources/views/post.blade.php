@@ -70,10 +70,7 @@
         <hr>
 
         <!-- Posted Comments -->
-
         <!-- Comment -->
-        
-        
         @if ($comments)
         
             @foreach ($comments as $comment)
@@ -97,10 +94,10 @@
 
                                 <small>{{$comment->updated_at->diffforHumans()}}</small>
 
-                            
                                 <div class="pull-right">
 
                                     @if ($comment->user_id == $user->id && Auth::check())
+
                                         {{-- btn edit --}}
                                         <small>
                                             <a href="" data-toggle="modal" data-target="#myModal{{$comment->id}}" class="label label-primary">Edit</a>   
@@ -167,9 +164,11 @@
                                     @endif
 
                                 </div> 
-                            {{-- End Pull right --}}
+                                {{-- End Pull right --}}
                             </h4>
-                            {{$comment->body}}
+
+                            {{-- comment body --}}
+                            <p>{{$comment->body}}</p>
 
                             <hr>
 
@@ -178,24 +177,32 @@
                             @foreach ($replies as $reply)
 
                                 @if ($comment->id == $reply->comment_id)
+
                                     <div class="media">
                                         <a class="pull-left" href="#">
                                             <img class="media-object" src="{{$reply->photo}}" alt="" height="64">
                                         </a>
+
                                         <div class="media-body">
                                             <h4 class="media-heading">{{$reply->author}}
-                                                <small>{{$reply->created_at}}</small>
+                                                <small>{{$reply->created_at->diffForHumans()}}</small>
+
+                                                
+
                                             </h4>
 
                                             <div class="pull-right">
 
                                                 @if ($user->id == $reply->user_id && Auth::check())
+
+                                                    
                                                     {{-- btn edit --}}
                                                     <small>
                                                         <a href="" data-toggle="modal" data-target="#editModal{{$reply->id}}" class="label label-primary">Edit</a>   
                                                     </small>
 
                                                     <small>
+
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="editModal{{$reply->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                             <div class="modal-dialog" role="document">
@@ -205,7 +212,7 @@
                                                                         <h4 class="modal-title" id="myModalLabel">Edit Comment</h4>
                                                                     </div>
                                                                     <div class="modal-body">
-            
+                                                                        {{-- Form Modal --}}
                                                                         <form action="{{route('admin.comment.replies.update', ['id' => $reply->id])}}" method="POST">
             
                                                                             {{ csrf_field() }}
@@ -213,16 +220,16 @@
                                                                             <input type="hidden" name="_method" value="PUT">
                                                                             
                                                                             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                                                                                    <textarea class="form-control" rows="3" name="body">{{$reply->body}}</textarea>
-                                                            
-                                                                                    @if ($errors->has('body'))
-                                                                                        <span class="help-block">
-                                                                                            <strong>{{ $errors->first('body') }}</strong>
-                                                                                        </span>
-                                                                                    @endif
-                                                                                </div>
-                                                                            
-            
+                                                                                <textarea class="form-control" rows="3" name="body">
+                                                                                    {{$reply->body}}
+                                                                                </textarea>
+                                                        
+                                                                                @if ($errors->has('body'))
+                                                                                    <span class="help-block">
+                                                                                        <strong>{{ $errors->first('body') }}</strong>
+                                                                                    </span>
+                                                                                @endif
+                                                                            </div>
                                                                             
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -230,17 +237,19 @@
                                                                             </div>
             
                                                                         </form>
+                                                                        {{-- end form edit reply --}}
             
                                                                     </div>         
                                                                 {{-- End Modal Body --}}
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        {{-- end modal --}}         
+                                                        {{-- end modal --}}    
+
                                                     </small>
-
+                                                    
+                                                    {{-- btn delete --}}
                                                     <small>
-
                                                         <form action="{{route('admin.comment.replies.destroy', ['id' => $reply->id])}}" method="POST">
 
                                                             {{ csrf_field() }}
@@ -249,51 +258,67 @@
 
                                                             <button type="submit" class="label label-danger" onclick="return confirm('Are you sure want to delete it ? ')">Delete</button>
                                                         </form>
-                                                        
                                                     </small>
                                                     
                                                 @endif
                                             </div>
-                                            {{$reply->body}}
-        
+                                            {{-- end div pull-right --}}
+
+                                            {{-- Reply body --}}
+                                            <p>{{$reply->body}}</p>
+                                           
                                             <hr>
+                                            
                                         </div>
+                                        {{-- end media body --}}
                                     </div>
                                     <!-- End Nested Comment -->
+                                    {{-- reply comment --}}
+                                 
                                 @endif
+                                
                               
                             @endforeach
-
-                            {{-- Form Untuk reply --}}
-                            <form action="{{action('CommentRepliesController@createReply')}}" method="POST">
-                                {{ csrf_field() }}
-
-                                {{-- hidden untuk menangkap post id --}}
-                                <input type="hidden" name="comment_id" value="{{$comment->id}}">
-                                <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                                    <textarea class="form-control" rows="3" name="body"></textarea>
-            
-                                    @if ($errors->has('body'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('body') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-            
-                            </form>
-                                
+                            {{-- End foreach replies --}}
                             
+                            {{-- Form Untuk reply --}}
+                            @if (!Auth::guest())
+                                <form action="{{action('CommentRepliesController@createReply')}}" method="POST">
+                                    {{ csrf_field() }}
+
+                                    {{-- hidden untuk menangkap post id --}}
+                                    <input type="hidden" name="comment_id" value="{{$comment->id}}">
+
+                                    <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+                                        <textarea class="form-control" rows="3" name="body"></textarea>
+                
+                                        @if ($errors->has('body'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('body') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                
+                                </form>
+                            {{-- End form reply --}}
+                            @endif
+                              
+                                           
+                            <hr>
                             
                         </div>
+                        {{-- end media body --}}
                     </div>
+                    {{-- end media tag --}}
             
                 @endif
 
             @endforeach
+            {{-- end foreach comment --}}
             
         @endif
        
@@ -349,6 +374,16 @@
 @endsection
 
 @section('scripts')
+
+    <script>
+
+        $.(".toggle-reply .comment-reply-container").click(function(){
+
+            $(this).next().slideToggle("slow");
+
+        });
+        
+    </script>
    
 @endsection
 
