@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <h1>Replies {{str_limit($comment->title, 20)}}</h1>
+
+<h1>Replies for {{str_limit($comment->body, 20)}}</h1>
     <?php $i = 1; ?>
     <table class="table table-bordered">
         <thead>
@@ -21,7 +22,8 @@
         </thead>
         <tbody>
 
-            @foreach ($replies as $reply)         
+            @foreach ($replies as $reply)
+                @if ($comment->id == $reply->comment_id)         
                 <tr>
                     <th scope="row">{{$i++}}</th>
                     <td>{{str_limit($reply->body, 7)}}</td>
@@ -82,10 +84,13 @@
 
                     </td>
                    
-                </tr>              
+                </tr>
+                @endif              
             @endforeach
           
         </tbody>
     </table>
+
+    {{$replies->links()}}
     
 @endsection

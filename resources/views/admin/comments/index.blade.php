@@ -95,5 +95,7 @@
           
         </tbody>
     </table>
+
+    {{$comments->links()}}
     
 @endsection

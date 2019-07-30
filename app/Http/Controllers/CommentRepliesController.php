@@ -82,8 +82,10 @@ class CommentRepliesController extends Controller
         //
         $comment = Comment::findOrFail($id);
 
-        // display replies for spesific comments
-        $replies = $comment->replies;
+        $replies = CommentReply::paginate(6);
+
+        // display replies for spesific comments cara gampang
+        // $replies = $comment->replies;
 
         return view('admin.comments.replies.show', compact('comment', 'replies'));
     }
