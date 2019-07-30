@@ -37,7 +37,8 @@
                         <a href="{{route( 'home.post', ['id' => $comment->post->id] )}}" class="fas fa-eye btn btn-primary"></a>
                     </td>
                     <td>
-                        <a href="{{route('admin.comment.replies.show', ['id' => $comment->id])}}" class="fas fa-eye btn btn-info"></a>
+                        {{-- short replies for spesific comment --}}
+                        <a href="{{route('admin.comment.replies.show', ['id' => $comment->id])}}" class="fas fa-eye btn btn-warning"></a>
                     </td>
                     <td>
                          @foreach ($posts as $post)

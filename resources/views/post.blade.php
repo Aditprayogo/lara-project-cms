@@ -112,8 +112,8 @@
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                             <h4 class="modal-title" id="myModalLabel">Edit Comment</h4>
                                                         </div>
+                                                        {{-- Modal body --}}
                                                         <div class="modal-body">
-
                                                             <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">
 
                                                                 {{ csrf_field() }}
@@ -138,13 +138,14 @@
                                                                 </div>
 
                                                             </form>
-
                                                         </div>         
-                                                    {{-- End Modal Body --}}
+                                                        {{-- End Modal Body --}}
+
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- end modal --}}         
+                                            {{-- end modal --}}   
+
                                         </small>
 
                                         {{-- delete button --}}
@@ -321,6 +322,7 @@
             {{-- end foreach comment --}}
             
         @endif
+        {{-- end if comments --}}
        
 
             
@@ -329,6 +331,7 @@
        
 
     </div>
+    {{-- end col-md-8 --}}
 
     <!-- Blog Sidebar Widgets Column -->
     <div class="col-md-4">
@@ -376,12 +379,6 @@
 @section('scripts')
 
     <script>
-
-        $.(".toggle-reply .comment-reply-container").click(function(){
-
-            $(this).next().slideToggle("slow");
-
-        });
         
     </script>
    

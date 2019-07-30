@@ -24,7 +24,7 @@
             @foreach ($replies as $reply)         
                 <tr>
                     <th scope="row">{{$i++}}</th>
-                    <td>{{str_limit($reply->body, 20)}}</td>
+                    <td>{{str_limit($reply->body, 7)}}</td>
                     <td>{{$reply->author}}</td>
                     <td>{{$reply->email}}</td>
                     <td>{{$reply->created_at->diffForHumans()}}</td>
