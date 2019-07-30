@@ -22,7 +22,8 @@
         </thead>
         <tbody>
 
-            @foreach ($comments as $comment)         
+            @foreach ($comments as $comment)   
+                @if ($comment->post_id == $post->id)     
                 <tr>
                     <th scope="row">{{$i++}}</th>
                     <td>{{str_limit($comment->body, 20)}}</td>
@@ -86,10 +87,16 @@
 
                     </td>
                    
-                </tr>              
+                </tr>
+                @endif               
             @endforeach
           
         </tbody>
     </table>
+
+    <div class="text-center">
+        {{$comments->links()}}
+    </div>
+    
     
 @endsection

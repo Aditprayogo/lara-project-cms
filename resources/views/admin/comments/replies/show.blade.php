@@ -91,6 +91,8 @@
         </tbody>
     </table>
 
-    {{$replies->links()}}
+    <div class="text-center">
+        {{$replies->links()}}
+    </div>
     
 @endsection

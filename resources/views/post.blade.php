@@ -323,6 +323,12 @@
             
         @endif
         {{-- end if comments --}}
+        
+        {{-- pagination --}}
+        <div class="text-center">
+            {{$comments->links()}}
+        </div>
+       
        
 
             

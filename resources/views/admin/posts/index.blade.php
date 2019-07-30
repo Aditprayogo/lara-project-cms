@@ -75,6 +75,8 @@
         </tbody>
     </table>
 
-    {{ $posts->links() }}
+    <div class="text-center">
+        {{ $posts->links() }}
+    </div>
     
 @endsection

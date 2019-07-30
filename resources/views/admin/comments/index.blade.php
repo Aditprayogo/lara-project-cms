@@ -96,6 +96,8 @@
         </tbody>
     </table>
 
-    {{$comments->links()}}
+    <div class="text-center">
+        {{$comments->links()}}
+    </div>
     
 @endsection

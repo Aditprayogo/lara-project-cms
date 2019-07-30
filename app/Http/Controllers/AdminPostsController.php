@@ -198,7 +198,7 @@ class AdminPostsController extends Controller
 
         $categories = Category::all();
 
-        $comments = Comment::orderBy('created_at', 'desc')->get();
+        $comments = Comment::orderBy('created_at', 'desc')->paginate(3);
 
         $user = User::findOrFail($id);
 
