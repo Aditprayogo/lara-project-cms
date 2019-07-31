@@ -24,6 +24,7 @@
         <tbody>
             @if ($posts)
                 @foreach ($posts as $post)
+                    @if ($user->id == $post->user_id)
                     <tr>
                         <th scope="row">{{$i++}}</th>
                         <td>
@@ -67,10 +68,15 @@
                             </form>
                             
                         </td>
-                    </tr>                   
+                    </tr>
+                    @endif                   
                 @endforeach           
             @endif         
         </tbody>
     </table>
+
+    <div class="text-center">
+        {{$posts->links()}}
+    </div>
     
 @endsection

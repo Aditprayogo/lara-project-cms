@@ -5,6 +5,9 @@
     <h1>Create Posts</h1>
 
     <div class="col-sm-9">
+
+        @include('inc.tiny')
+
         <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
     
@@ -27,7 +30,7 @@
             <label for="exampleInputEmail1">Body</label>
             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                 
-                <textarea name="body" id="" cols="100" rows="5" placeholder="Enter the body.." class="form-control"></textarea>
+                <textarea name="body" id="mytextarea" cols="100" rows="20" placeholder="Enter the body.." class="form-control"></textarea>
                 @if ($errors->has('body'))
                     <span class="help-block">
                         <strong>{{ $errors->first('body') }}</strong>

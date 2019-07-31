@@ -50,7 +50,7 @@
     
             {{-- Form Untuk status --}}
             <div class="form-group">
-                <label for="exampleInputPassword1">Status</label>
+                <label for="exampleInputPassword1">Category</label>
                 <select class="form-control" id="exampleFormControlSelect1" name="category_id">
 
                     @foreach ($categories as $category)

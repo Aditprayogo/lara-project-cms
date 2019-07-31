@@ -112,7 +112,10 @@ class AdminPostsController extends Controller
         
         $user = User::findOrFail($id);
 
-        $posts = $user->posts;
+        //adding paginate untuk spesific user post
+        $posts = Post::paginate(3);
+
+        // $posts = $user->posts;
 
         return view('admin.posts.show', compact('user', 'posts'));
     }
@@ -163,9 +166,6 @@ class AdminPostsController extends Controller
         //mendapatkan user yang sedang login
         Auth::user()->posts()->findOrFail($id)->update($input);
 
-
-        // Auth::user()->posts()->whereId($id)->first()->update($input);
-
         // $post->update($input);
 
         return redirect('admin/posts')->with('success', 'The Post Has Been Edited');
@@ -205,5 +205,6 @@ class AdminPostsController extends Controller
         $replies = CommentReply::orderBy('created_at', 'desc')->get();
 
         return view('post', compact( 'post', 'categories', 'comments', 'user', 'replies' ));
+        
     }
 }
