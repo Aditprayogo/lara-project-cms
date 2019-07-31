@@ -4,6 +4,8 @@
 
     <h1>Edit Posts</h1>
 
+    @include('inc.tiny')
+
         @if ($post->photo)
 
             <img src="{{$post->photo->file}}" alt="" class="img-responsive img-rounded" width="50%">
@@ -39,7 +41,7 @@
             <label for="exampleInputEmail1">Body</label>
             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                 
-                <textarea name="body" id="" cols="100" rows="5" placeholder="Enter the body.." class="form-control">{{$post->body}}</textarea>
+                <textarea name="body" id="" cols="100" rows="30" placeholder="Enter the body.." class="form-control">{{$post->body}}</textarea>
                 @if ($errors->has('body'))
                     <span class="help-block">
                         <strong>{{ $errors->first('body') }}</strong>
