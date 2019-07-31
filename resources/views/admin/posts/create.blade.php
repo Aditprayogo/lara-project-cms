@@ -6,7 +6,7 @@
 
     <div class="col-sm-9">
 
-        @include('inc.tiny')
+        {{-- @include('inc.tiny') --}}
 
         <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}

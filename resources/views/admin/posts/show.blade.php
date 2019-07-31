@@ -24,7 +24,6 @@
         <tbody>
             @if ($posts)
                 @foreach ($posts as $post)
-                    @if ($user->id == $post->user_id)
                     <tr>
                         <th scope="row">{{$i++}}</th>
                         <td>
@@ -71,7 +70,7 @@
                     </tr>
                     @endif                   
                 @endforeach           
-            @endif         
+    
         </tbody>
     </table>
 

@@ -28,7 +28,7 @@ class AdminPostsController extends Controller
         //
         $categories = Category::all();
 
-        $posts = Post::paginate(2);
+        $posts = Post::all();
 
         return view('admin.posts.index', compact('categories', 'posts'));
     }
@@ -112,10 +112,7 @@ class AdminPostsController extends Controller
         
         $user = User::findOrFail($id);
 
-        //adding paginate untuk spesific user post
-        $posts = Post::paginate(3);
-
-        // $posts = $user->posts;
+        $posts = $user->posts;
 
         return view('admin.posts.show', compact('user', 'posts'));
     }
@@ -196,11 +193,11 @@ class AdminPostsController extends Controller
 
         $post = Post::findOrFail($id);
 
+        $user = $post->user;
+
         $categories = Category::all();
 
-        $comments = Comment::orderBy('created_at', 'desc')->paginate(3);
-
-        $user = User::findOrFail($id);
+        $comments = Comment::orderBy('created_at', 'desc')->get();
 
         $replies = CommentReply::orderBy('created_at', 'desc')->get();
 

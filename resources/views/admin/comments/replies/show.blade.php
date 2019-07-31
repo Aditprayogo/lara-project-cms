@@ -23,7 +23,7 @@
         <tbody>
 
             @foreach ($replies as $reply)
-                @if ($comment->id == $reply->comment_id)         
+                      
                 <tr>
                     <th scope="row">{{$i++}}</th>
                     <td>{{str_limit($reply->body, 7)}}</td>
@@ -85,7 +85,7 @@
                     </td>
                    
                 </tr>
-                @endif              
+                        
             @endforeach
           
         </tbody>

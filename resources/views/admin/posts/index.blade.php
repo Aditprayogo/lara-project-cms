@@ -20,6 +20,7 @@
                 <th scope="col">Created at</th>
                 <th scope="col">Updated at</th>
                 <th scope="col">Action</th>
+                <th scope="col">View Post</th>
             </tr>
         </thead>
         <tbody>
@@ -60,14 +61,19 @@
                                 {{-- Untuk edit user --}}
                                 <a href="{{route('admin.posts.edit', ['id' => $post->id])}}" class="btn btn-success fas fa-edit"></a> 
                                 
-                                {{-- Untuk melihat post --}}
-                                <a href="{{route('home.post', ['id' => $post->id])}}" class="fas fa-eye btn btn-primary"></a>
-
+                               
                                 {{-- Untuk melihat spesific comment dari post --}}
                                 <a href="{{route('admin.comments.show', ['id' => $post->id])}}" class="fas fa-eye btn btn-warning"></a>
 
                             </form>
+
+
                             
+                        </td>
+                        <td>
+                            
+                             {{-- Untuk melihat post --}}
+                             <a href="{{route('home.post', $post->id)}}" class="fas fa-eye btn btn-primary"></a>
                         </td>
                     </tr>                   
                 @endforeach           
@@ -75,8 +81,8 @@
         </tbody>
     </table>
 
-    <div class="text-center">
+    {{-- <div class="text-center">
         {{ $posts->links() }}
-    </div>
+    </div> --}}
     
 @endsection

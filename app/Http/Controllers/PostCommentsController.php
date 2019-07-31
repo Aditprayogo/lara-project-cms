@@ -79,10 +79,9 @@ class PostCommentsController extends Controller
 
         $post = Post::findOrFail($id);
 
-        $comments = Comment::paginate(6);
 
         // Urutkan comment berdasarkan spesific post id
-        // $comments = $post->comments;
+        $comments = $post->comments;
 
         return view('admin.comments.show', compact('comments' , 'post'));
 

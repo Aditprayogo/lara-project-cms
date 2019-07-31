@@ -10,7 +10,7 @@
 
         <!-- Author -->
         <p class="lead">
-            by <a href="#">{{$post->user->name}}</a>
+            by <a href="#">{{$user->name}}</a>
         </p>
 
         <hr>
@@ -29,7 +29,7 @@
         <hr>
 
         <!-- Post Content -->
-        <p class="lead">{{$post->body}}</p>
+        <p class="lead">{{ $post->body }}</p>
 
         <hr>
 
@@ -325,10 +325,10 @@
         {{-- end if comments --}}
         
         {{-- pagination --}}
-        <div class="text-center">
+        {{-- <div class="text-center">
             {{$comments->links()}}
         </div>
-       
+        --}}
        
 
             
