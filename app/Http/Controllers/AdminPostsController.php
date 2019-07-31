@@ -193,6 +193,7 @@ class AdminPostsController extends Controller
 
         $post = Post::findOrFail($id);
 
+        //mengambil data user berdasarkan post
         $user = $post->user;
 
         $categories = Category::all();

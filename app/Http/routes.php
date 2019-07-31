@@ -37,6 +37,11 @@ Route::group(['middleware' => 'admin'] ,function(){
     
 });
 
+Route::get('/post/{id}', [
+    
+    'as' => 'home.post', 'uses' => 'AdminPostsController@post'
+
+]);
 
 Route::resource('/admin/comments', 'PostCommentsController');
 
@@ -46,11 +51,5 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::resource('/admin/comment/replies', 'CommentRepliesController');
 
-    Route::get('/post/{id}', [
-    
-        'as' => 'home.post', 'uses' => 'AdminPostsController@post'
-    
-    ]);
-    
 
 });

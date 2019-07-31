@@ -39,7 +39,7 @@
 
                         </td>
                         <td>{{$post->title}}</td>
-                        <td>{{ str_limit($post->body , 40) }}</td>
+                        <td>{{ str_limit($post->body , 20) }}</td>
                         <td>
                             @if ($post->category)
                             {{$post->category->name}}
