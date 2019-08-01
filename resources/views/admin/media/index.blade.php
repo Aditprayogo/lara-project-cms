@@ -7,50 +7,58 @@
 
     @if ($photos)
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                   
-                    <th scope="col">File</th>
-                    <th scope="col">Created</th>
-                   
-                    
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                @foreach ($photos as $photo)
+        <form action="{{route('media.delete')}}" method="POST">
+
+            {{ csrf_field() }}
+
+            <input type="hidden" value="DELETE" name="_method">
+
+            <select name="checkBoxArray" id=""></select>
+
+            <button type="submit" class="btn btn-info" onclick="return confirm('Are you sure want to delete this item ? ')">Delete Medias</button>
+
+            <br><br>
+
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <th scope="row">{{$i++}}</th>
-                        
-                        <td><img src="{{$photo->file}}" alt="" height="80"></td>
-                        <td>{{$photo->created_at}} . ({{$photo->created_at->diffForHumans()}})</td>
-                    
-                       
-                        <td>
-
-                            <form action="{{route('admin.medias.destroy', ['id' => $photo->id])}}" method="POST">
-                                {{ csrf_field() }}
-
-                                <input type="hidden" name="_method" value="DELETE">
-
-                                {{-- btn delete --}}
-                                <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are you sure want to delete')"></button>
-                                
-                                {{-- btn untuk view--}}
-                                <a href="{{route('admin.medias.show', ['id' => $photo->id])}}" class="btn btn-warning fas fa-eye"></a>
-                                
-                            </form>
-
-                        </td>
-                        
+                        <th><input type="checkbox" name="" id="options"></th>
+                        <th scope="col">No</th>     
+                        <th scope="col">File</th>
+                        <th scope="col">Created</th>          
+                        <th scope="col">Action</th>
                     </tr>
-                @endforeach
-                
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    
+                    @foreach ($photos as $photo)
+                        <tr>
+                            <th>
+                                <input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="{{$photo->id}}">
+                            </th>
+                            <th scope="row">{{$i++}}</th>
+                            <td><img src="{{$photo->file}}" alt="" height="80"></td>
+                            <td>{{$photo->created_at}} . ({{$photo->created_at->diffForHumans()}})</td>
+                            <td>
+                                <form action="{{route('admin.medias.destroy', ['id' => $photo->id])}}" method="POST">
+                                    {{ csrf_field() }}
+
+                                    <input type="hidden" name="_method" value="DELETE">
+
+                                    {{-- btn delete --}}
+                                    <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are you sure want to delete')"></button>
+                                    
+                                    {{-- btn untuk view--}}
+                                    <a href="{{route('admin.medias.show', ['id' => $photo->id])}}" class="btn btn-warning fas fa-eye"></a>          
+                                </form>
+                            </td>
+                            
+                        </tr>
+                    @endforeach
+                    
+                </tbody>
+            </table>
+        </form>
         
     @endif
    

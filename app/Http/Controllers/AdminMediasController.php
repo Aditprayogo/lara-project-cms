@@ -114,4 +114,21 @@ class AdminMediasController extends Controller
 
         return redirect('admin/medias')->with('success', 'The Photo Has Been Deleted');
     }
+
+    public function deleteMedia(Request $request)
+    {
+        # code...
+        $photos = Photo::findOrFail($request->checkBoxArray);
+
+        foreach ($photos as $photo) {
+
+            # code...
+            $photo->delete();
+            
+        }
+
+        return redirect()->back()->with('success', 'The Medias Has been deleted');
+
+        
+    }
 }

@@ -42,11 +42,6 @@ class CommentRepliesController extends Controller
     public function store(Request $request)
     {
         //
-    }
-
-    public function createReply(Request $request)
-    {
-        //
         $user = Auth::user();
 
         $this->validate($request, [
@@ -69,6 +64,12 @@ class CommentRepliesController extends Controller
         CommentReply::create($data);
 
         return redirect()->back()->with('success', 'The comment has been created');
+    }
+
+    public function createReply(Request $request)
+    {
+        //
+       
     }
 
     /**

@@ -23,69 +23,69 @@
         <tbody>
 
             @foreach ($replies as $reply)
-                      
-                <tr>
-                    <th scope="row">{{$i++}}</th>
-                    <td>{{str_limit($reply->body, 7)}}</td>
-                    <td>{{$reply->author}}</td>
-                    <td>{{$reply->email}}</td>
-                    <td>{{$reply->created_at->diffForHumans()}}</td>
-                    <td>{{$reply->updated_at->diffForHumans()}}</td>
-                    <td>
-                        <a href="{{route('home.post', $reply->comment->post->id)}}" class="fas fa-eye btn btn-primary"></a>
-                    </td>
-                    <td>
-                        @if ($comment->id == $reply->comment_id)
-                        
-                            {{$comment->body}}
+                @if ($comment->id == $reply->comment_id)
+                    <tr>
+                        <th scope="row">{{$i++}}</th>
+                        <td>{{str_limit($reply->body, 7)}}</td>
+                        <td>{{$reply->author}}</td>
+                        <td>{{$reply->email}}</td>
+                        <td>{{$reply->created_at->diffForHumans()}}</td>
+                        <td>{{$reply->updated_at->diffForHumans()}}</td>
+                        <td>
+                            <a href="{{route('home.post', $reply->comment->post->id)}}" class="fas fa-eye btn btn-primary"></a>
+                        </td>
+                        <td>
+                            @if ($comment->id == $reply->comment_id)
                             
-                        @endif
-                    </td>
-                    <td>
-                        @if ($reply->is_active == 1)
+                                {{$comment->body}}
+                                
+                            @endif
+                        </td>
+                        <td>
+                            @if ($reply->is_active == 1)
 
-                            <form action="{{route('admin.comment.replies.update', ['id' => $reply->id])}}" method="POST">  
+                                <form action="{{route('admin.comment.replies.update', ['id' => $reply->id])}}" method="POST">  
+
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="PUT">
+
+                                    <input type="hidden" name="is_active" id="" value="0">
+
+                                    <button type="submit" class="btn btn-danger">Un-Approve</button>
+
+                                </form>     
+                            @else 
+
+                                <form action="{{route('admin.comment.replies.update', ['id' => $reply->id])}}" method="POST">  
+
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="PUT">
+
+                                    <input type="hidden" name="is_active" id="" value="1">
+
+                                    <button type="submit" class="btn btn-info">Approve</button>
+
+                                </form>     
+                                
+                            @endif
+                        
+                        </td>
+                        <td>
+
+                            <form action="{{route('admin.comment.replies.destroy', ['id' => $reply->id])}}" method="POST">
 
                                 {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="PUT">
 
-                                <input type="hidden" name="is_active" id="" value="0">
+                                <input type="hidden" name="_method" value="DELETE">
 
-                                <button type="submit" class="btn btn-danger">Un-Approve</button>
+                                <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are you sure want to delete this comment ? ')"></button>
 
-                            </form>     
-                        @else 
+                            </form>
 
-                            <form action="{{route('admin.comment.replies.update', ['id' => $reply->id])}}" method="POST">  
-
-                                {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="PUT">
-
-                                <input type="hidden" name="is_active" id="" value="1">
-
-                                <button type="submit" class="btn btn-info">Approve</button>
-
-                            </form>     
-                            
-                        @endif
-                       
-                    </td>
-                    <td>
-
-                        <form action="{{route('admin.comment.replies.destroy', ['id' => $reply->id])}}" method="POST">
-
-                            {{ csrf_field() }}
-
-                            <input type="hidden" name="_method" value="DELETE">
-
-                            <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are you sure want to delete this comment ? ')"></button>
-
-                        </form>
-
-                    </td>
-                   
-                </tr>
-                        
+                        </td>
+                    
+                    </tr>
+                @endif                
             @endforeach
           
         </tbody>

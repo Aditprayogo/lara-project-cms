@@ -51,7 +51,7 @@
                     
                 </select>
             </div>
-                {{-- end form untuk status --}}
+            {{-- end form untuk status --}}
 
              {{-- Form untuk cover_image --}}
              <div class="form group{{ $errors->has('photo_id') ? ' has-error' : '' }}">

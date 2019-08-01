@@ -98,7 +98,7 @@ class AdminPostsController extends Controller
 
         $user->posts()->create($input);
 
-        return redirect('/admin/posts')->with('success', 'The Post Has Been Created');
+        return redirect('admin/posts')->with('success', 'The Post Has Been Created');
     }
 
     /**
@@ -112,7 +112,10 @@ class AdminPostsController extends Controller
         
         $user = User::findOrFail($id);
 
-        $posts = $user->posts;
+        $posts = Post::paginate(10);
+
+        //for spesific post user
+        // $posts = $user->posts;
 
         return view('admin.posts.show', compact('user', 'posts'));
     }

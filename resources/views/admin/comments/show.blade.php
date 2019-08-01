@@ -22,72 +22,73 @@
         </thead>
         <tbody>
 
-            @foreach ($comments as $comment)   
-                <tr>
-                    <th scope="row">{{$i++}}</th>
-                    <td>{{str_limit($comment->body, 20)}}</td>
-                    <td>{{$comment->author}}</td>
-                    <td>{{$comment->email}}</td>
-                    <td>{{$comment->created_at->diffForHumans()}}</td>
-                    <td>{{$comment->updated_at->diffForHumans()}}</td>
-                    <td>
-                        <a href="{{route('home.post', $comment->post->id)}}" class="fas fa-eye btn btn-primary"></a>
-                    </td>
-                    <td>
-                        <a href="{{route('admin.comment.replies.show', ['id' => $comment->id])}}" class="fas fa-eye btn btn-warning"></a>
-                    </td>
-                    <td>
-                        @if ($post->id == $comment->post_id)
+            @foreach ($comments as $comment)  
+                @if ($post->id == $comment->post_id)
+                    <tr>
+                        <th scope="row">{{$i++}}</th>
+                        <td>{{str_limit($comment->body, 20)}}</td>
+                        <td>{{$comment->author}}</td>
+                        <td>{{$comment->email}}</td>
+                        <td>{{$comment->created_at->diffForHumans()}}</td>
+                        <td>{{$comment->updated_at->diffForHumans()}}</td>
+                        <td>
+                            <a href="{{route('home.post', $comment->post->id)}}" class="fas fa-eye btn btn-primary"></a>
+                        </td>
+                        <td>
+                            <a href="{{route('admin.comment.replies.show', ['id' => $comment->id])}}" class="fas fa-eye btn btn-warning"></a>
+                        </td>
+                        <td>
+                            @if ($post->id == $comment->post_id)
+                            
+                                {{$post->title}}
+                                
+                            @endif
+                        </td>
+                        <td>
+                            @if ($comment->is_active == 1)
+
+                                <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">  
+
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="PUT">
+
+                                    <input type="hidden" name="is_active" id="" value="0">
+
+                                    <button type="submit" class="btn btn-danger">Un-Approve</button>
+
+                                </form>     
+                            @else 
+
+                                <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">  
+
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="PUT">
+
+                                    <input type="hidden" name="is_active" id="" value="1">
+
+                                    <button type="submit" class="btn btn-info">Approve</button>
+
+                                </form>     
+                                
+                            @endif
                         
-                            {{$post->title}}
-                            
-                        @endif
-                    </td>
-                    <td>
-                        @if ($comment->is_active == 1)
+                        </td>
+                        <td>
 
-                            <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">  
+                            <form action="{{route('admin.comments.destroy', ['id' => $comment->id])}}" method="POST">
 
                                 {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="PUT">
 
-                                <input type="hidden" name="is_active" id="" value="0">
+                                <input type="hidden" name="_method" value="DELETE">
 
-                                <button type="submit" class="btn btn-danger">Un-Approve</button>
+                                <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are you sure want to delete this comment ? ')"></button>
 
-                            </form>     
-                        @else 
+                            </form>
 
-                            <form action="{{route('admin.comments.update', ['id' => $comment->id])}}" method="POST">  
-
-                                {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="PUT">
-
-                                <input type="hidden" name="is_active" id="" value="1">
-
-                                <button type="submit" class="btn btn-info">Approve</button>
-
-                            </form>     
-                            
-                        @endif
-                       
-                    </td>
-                    <td>
-
-                        <form action="{{route('admin.comments.destroy', ['id' => $comment->id])}}" method="POST">
-
-                            {{ csrf_field() }}
-
-                            <input type="hidden" name="_method" value="DELETE">
-
-                            <button type="submit" class="btn btn-danger fas fa-trash" onclick="return confirm('Are you sure want to delete this comment ? ')"></button>
-
-                        </form>
-
-                    </td>
-                   
-                </tr>
+                        </td>
                     
+                    </tr>
+                @endif       
             @endforeach
           
         </tbody>
