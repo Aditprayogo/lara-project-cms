@@ -15,7 +15,7 @@
 
             <select name="checkBoxArray" id=""></select>
 
-            <button type="submit" class="btn btn-info" onclick="return confirm('Are you sure want to delete this item ? ')">Delete Medias</button>
+            <button type="submit" class="btn btn-info" onclick="return confirm('Are you sure want to delete this item ? ')" id="deletebtn">Delete Medias</button>
 
             <br><br>
 
@@ -61,7 +61,46 @@
         </form>
         
     @endif
+
+    
    
 
+    
+@endsection
+
+@section('scripts')
+    
+    <script>
+
+        $(document).ready(function(e) {   
+                
+            $('#options').click(function(){
+
+                if (this.checked) {
+
+                    $('.checkBoxes').each(function(){
+                        
+                        this.checked = true;
+
+                    });
+                    
+                }else {
+
+                    $('.checkBoxes').each(function(){
+                        
+                        this.checked = false;
+
+                    });
+                }
+
+
+
+                console.log('it works')
+
+            });
+    
+        });
+        
+    </script>
     
 @endsection

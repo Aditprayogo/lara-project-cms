@@ -16,6 +16,7 @@
 
     <link href="{{asset('css/libs.css')}}" rel="stylesheet">
 
+
     @yield('styles')
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
@@ -363,12 +364,17 @@
 </div>
 <!-- /#wrapper -->
 
+
+
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
 
 @yield('scripts')
 
+
 @yield('footer')
+
+
 
 
 
