@@ -25,6 +25,13 @@ Route::delete('media/delete', [
     'as' => 'media.delete' , 'uses' => 'AdminMediasController@deleteMedia'
 ]);
 
+Route::delete('posts/delete', [
+
+    'as' => 'posts.delete', 'uses' => 'AdminPostsController@deletePosts'
+
+]);
+
+
 Route::group(['middleware' => 'admin'] ,function(){
 
     Route::resource('/admin/users', 'AdminUsersController');
@@ -49,8 +56,6 @@ Route::get('/post/{id}', [
     'as' => 'home.post', 'uses' => 'AdminPostsController@post'
 
 ]);
-
-
 
 
 Route::resource('/admin/comments', 'PostCommentsController');

@@ -40,6 +40,7 @@
                             <td><img src="{{$photo->file}}" alt="" height="80"></td>
                             <td>{{$photo->created_at}} . ({{$photo->created_at->diffForHumans()}})</td>
                             <td>
+
                                 <form action="{{route('admin.medias.destroy', ['id' => $photo->id])}}" method="POST">
                                     {{ csrf_field() }}
 
@@ -51,6 +52,7 @@
                                     {{-- btn untuk view--}}
                                     <a href="{{route('admin.medias.show', ['id' => $photo->id])}}" class="btn btn-warning fas fa-eye"></a>          
                                 </form>
+
                             </td>
                             
                         </tr>
@@ -92,10 +94,6 @@
 
                     });
                 }
-
-
-
-                console.log('it works')
 
             });
     

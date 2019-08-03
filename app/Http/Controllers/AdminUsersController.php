@@ -160,24 +160,20 @@ class AdminUsersController extends Controller
 
                 # code...
                 //check jika input password baru sama dengan password di database
-                session()->flash('error', 'The new password cannot same as old password');
-                return redirect()->back();
+                return redirect()->back()->with('error', 'The new password cant be same');
             }
 
         } else {
 
             # code...
             //check jika old password tidak sama dengan password di database
-            session()->flash('error', 'The old password does not same in database');
-            return redirect()->back();
+            return redirect()->back()->with('error', 'The password is not match');
 
         }
 
         // Auth::user()->findOrFail($id)->update($input);
             
         $user->update($input);
-
-      
         
         return redirect('/admin/users')->with('success', 'The User Has Been Updated');
 

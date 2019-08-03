@@ -208,4 +208,19 @@ class AdminPostsController extends Controller
         return view('post', compact( 'post', 'categories', 'comments', 'user', 'replies' ));
         
     }
+
+    public function deletePosts(Request $request)
+    {
+        # code...
+        $posts = Post::findOrFail($request->checkBoxArray);
+
+        foreach ($posts as $post) {
+
+            # code...
+            $post->delete();
+        }
+
+        return redirect()->back()->with('success', 'The Posts has been deleted');
+
+    }
 }
