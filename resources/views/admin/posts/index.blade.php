@@ -13,7 +13,7 @@
 
         <br><br>
     
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="myTable">
             <thead>
                 <tr>
                     <th><input type="checkbox" id="options"></th>
@@ -82,6 +82,7 @@
                                 
                                 {{-- Untuk melihat post --}}
                                 <a href="{{route('home.post', $post->id)}}" class="fas fa-eye btn btn-primary"></a>
+
                             </td>
                         </tr>                   
                     @endforeach           
@@ -100,7 +101,11 @@
 
     <script>
 
+       
+
         $(document).ready(function(){
+
+            $('#myTable').DataTable();
 
             $('#options').click(function(){
 
