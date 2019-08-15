@@ -20,6 +20,7 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+
 Route::delete('media/delete', [
 
     'as' => 'media.delete' , 'uses' => 'AdminMediasController@deleteMedia'
@@ -31,6 +32,11 @@ Route::delete('posts/delete', [
 
 ]);
 
+
+Route::delete('comments/delete', [
+
+    'as' => 'comments.delete', 'uses' => 'PostCommentsController@deleteComments'
+]);
 
 Route::group(['middleware' => 'admin'] ,function(){
 

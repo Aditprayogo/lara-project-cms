@@ -79,10 +79,10 @@ class PostCommentsController extends Controller
 
         $post = Post::findOrFail($id);
 
-        $comments = Comment::paginate(10);
+        // $comments = Comment::paginate(10);
 
         // Urutkan comment berdasarkan spesific post id
-        // $comments = $post->comments;
+        $comments = $post->comments;
 
         return view('admin.comments.show', compact('comments' , 'post'));
 
@@ -132,5 +132,19 @@ class PostCommentsController extends Controller
 
         return redirect()->back()->with('success', 'Comment has been deleted');
 
+    }
+
+    public function deleteComments(Request $request)
+    {
+        # code...
+        $comments = Comment::findOrFail($request->checkBoxArray);
+
+        foreach ($comments as $comment) {
+
+            # code...
+            $comment->delete();
+        }
+
+        return redirect()->back()->with('success', 'The Comment has been deleted');
     }
 }

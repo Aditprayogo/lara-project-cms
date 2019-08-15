@@ -4,7 +4,7 @@
 
     <h1>Comments for {{str_limit($post->title, 20)}}</h1>
     <?php $i = 1; ?>
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="mytable">
         <thead>
           <tr>
             <th scope="col">No</th>
@@ -23,7 +23,7 @@
         <tbody>
 
             @foreach ($comments as $comment)  
-                @if ($post->id == $comment->post_id)
+                {{-- @if ($post->id == $comment->post_id) --}}
                     <tr>
                         <th scope="row">{{$i++}}</th>
                         <td>{{str_limit($comment->body, 20)}}</td>
@@ -88,15 +88,29 @@
                         </td>
                     
                     </tr>
-                @endif       
+                {{-- @endif        --}}
             @endforeach
           
         </tbody>
     </table>
-
+{{-- 
     <div class="text-center">
         {{$comments->links()}}
-    </div>
+    </div> --}}
     
+    
+@endsection
+
+@section('scripts')
+
+    <script>
+
+        $(document).ready(function(){
+
+            $("#mytable").dataTable();
+
+        });
+
+    </script>
     
 @endsection

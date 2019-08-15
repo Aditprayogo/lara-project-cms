@@ -20,7 +20,7 @@
                     <th scope="col">id</th>
                     <th scope="col">Photo</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Body</th>
+                    {{-- <th scope="col">Body</th> --}}
                     <th scope="col">Category</th>
                     <th scope="col">Owner</th>
                     <th scope="col">Created at</th>
@@ -46,8 +46,8 @@
                                 @endif
 
                             </td>
-                            <td>{{$post->title}}</td>
-                            <td>{{ str_limit($post->body , 20) }}</td>
+                            <td>{{str_limit($post->title, 10)}}</td>
+                            {{-- <td>{{ str_limit($post->body , 20) }}</td> --}}
                             <td>
                                 @if ($post->category)
                                 {{$post->category->name}}

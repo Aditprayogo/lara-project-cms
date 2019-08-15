@@ -5,7 +5,7 @@
 
 <h1>Replies for {{str_limit($comment->body, 20)}}</h1>
     <?php $i = 1; ?>
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="myTable">
         <thead>
           <tr>
             <th scope="col">No</th>
@@ -23,7 +23,7 @@
         <tbody>
 
             @foreach ($replies as $reply)
-                @if ($comment->id == $reply->comment_id)
+                {{-- @if ($comment->id == $reply->comment_id) --}}
                     <tr>
                         <th scope="row">{{$i++}}</th>
                         <td>{{str_limit($reply->body, 7)}}</td>
@@ -85,14 +85,33 @@
                         </td>
                     
                     </tr>
-                @endif                
+                {{-- @endif                 --}}
             @endforeach
           
         </tbody>
     </table>
 
-    <div class="text-center">
+    {{-- <div class="text-center">
         {{$replies->links()}}
-    </div>
+    </div> --}}
+
+
+    
+@endsection
+
+@section('scripts')
+
+    <script>
+
+
+        $(document).ready(function(){
+
+            $("#myTable").dataTable();
+
+
+        });
+    
+    
+    </script>
     
 @endsection
