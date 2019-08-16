@@ -1,50 +1,59 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Welcome {{Auth::user()->name}}</h1>
-
-    <div class="col-sm-3">
-        @if (Auth::user()->photo)
-            <img src="{{Auth::user()->photo->file}}" alt="" class="img-responsive img-rounded">
-        @else 
-            <img src="/images/noimage.png" alt="" class="img-responsive img-rounded">
-        @endif      
-    </div>
     
-    <div class="col-sm-9">
-        <div class="well">
-            <ul>
-                <li>
-                    Name : {{Auth::user()->name}}
-                </li>
-                <li>
-                    Role : {{Auth::user()->role->name}}
-                </li>
-                <li>
-                    Created :  {{Auth::user()->created_at->diffForHumans()}}
-                </li>
-                <li>
-                    @if (Auth::user()->is_active == 1)
+  
 
-                        Status :    <span class="label label-primary">Active</span> 
-                        
-                    @else 
-                        Status :    <span class="label label-danger">Not Active</span> 
-             
-                    @endif
-                </li>
-                <li>
-                    Posts :  {{Auth::user()->posts()->count()}}
-                </li>
-            </ul>
-        </div>
-        <div class="well">
-            <ul>
-                <li>
-                    Current date : {{Carbon\Carbon::now()->format('d-m-Y')}}
-                </li>
-            </ul>
-        </div>
-    </div>
+    <canvas id="myChart"></canvas>
    
+@endsection
+
+@section('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Posts', 'Categories', 'Comments', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'Data of CMS',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    
+@endsection
+
+@section('footer')
+    <br>
 @endsection

@@ -17,6 +17,10 @@
             </li>
 
             <li>
+                <a href="/admin/profile"><i class="fa fa-dashboard fa-fw"></i> Profile</a>
+            </li>
+
+            <li>
                 <a href="#"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
