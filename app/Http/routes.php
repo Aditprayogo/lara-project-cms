@@ -32,11 +32,13 @@ Route::delete('posts/delete', [
 
 ]);
 
-
 Route::delete('comments/delete', [
 
     'as' => 'comments.delete', 'uses' => 'PostCommentsController@deleteComments'
 ]);
+
+
+
 
 Route::group(['middleware' => 'admin'] ,function(){
 
@@ -47,6 +49,9 @@ Route::group(['middleware' => 'admin'] ,function(){
     Route::resource('/admin/categories', 'AdminCategoriesController');
 
     Route::resource('/admin/medias', 'AdminMediasController');
+
+    
+    Route::resource('/admin/comments', 'PostCommentsController');
     
     Route::get('/admin', function(){
         
@@ -64,7 +69,9 @@ Route::get('/post/{id}', [
 ]);
 
 
-Route::resource('/admin/comments', 'PostCommentsController');
+
+
+
 
 Route::group(['middleware' => 'auth'], function(){
 
@@ -72,9 +79,7 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::resource('/admin/comment/replies', 'CommentRepliesController');
 
-  
-
-   
     
+
 
 });

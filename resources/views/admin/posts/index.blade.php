@@ -5,7 +5,10 @@
     <h1>Posts Index</h1>
 
     <?php $i = 1; ?>
+    
     <form action="{{route('posts.delete')}}" method="POST">
+        
+        {{ csrf_field() }}
 
         <input type="hidden" name="_method" value="DELETE">
 
