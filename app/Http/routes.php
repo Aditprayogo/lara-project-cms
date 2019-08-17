@@ -22,21 +22,6 @@ Route::get('/home', 'HomeController@index');
 
 
 
-Route::delete('media/delete', [
-
-    'as' => 'media.delete' , 'uses' => 'AdminMediasController@deleteMedia'
-]);
-
-Route::delete('posts/delete', [
-
-    'as' => 'posts.delete', 'uses' => 'AdminPostsController@deletePosts'
-
-]);
-
-Route::delete('comments/delete', [
-
-    'as' => 'comments.delete', 'uses' => 'PostCommentsController@deleteComments'
-]);
 
 
 
@@ -56,7 +41,21 @@ Route::group(['middleware' => 'admin'] ,function(){
     Route::get('/admin', 'AdminController@index');
 
     Route::get('/admin/profile', 'AdminController@profile');
+
     
+    Route::delete('comments/delete', 'PostCommentsController@deleteComments');
+
+    Route::delete('media/delete', [
+
+        'as' => 'media.delete' , 'uses' => 'AdminMediasController@deleteMedia'
+    ]);
+
+    Route::delete('posts/delete', [
+
+        'as' => 'posts.delete', 'uses' => 'AdminPostsController@deletePosts'
+
+    ]);
+
 });
 
 Route::get('/post/{id}', [
@@ -65,10 +64,13 @@ Route::get('/post/{id}', [
 
 ]);
 
+
 Route::group(['middleware' => 'auth'], function(){
 
-    // Route::post('comment/reply', 'CommentRepliesController@createReply');
+    
     
     Route::resource('/admin/comment/replies', 'CommentRepliesController');
+
+    
 
 });

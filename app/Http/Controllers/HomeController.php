@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Post;
+use App\Category;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -23,7 +26,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   
+
+        $posts = Post::paginate(5);
+        $categories = Category::all();
+        $users = User::all();
+        return view('home', compact('posts', 'categories', 'users'));
     }
 }

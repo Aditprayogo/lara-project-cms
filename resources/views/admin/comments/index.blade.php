@@ -5,20 +5,21 @@
     <h1>All Comment</h1>
     <?php $i = 1; ?>
 
-    <form action="{{route('comments.delete')}}" method="POST">
-
-        {{ csrf_field() }}
+    <form action="/comments/delete" method="POSTS" enctype="multipart/form-data">
 
         <input type="hidden" name="_method" value="DELETE">
 
-        <button type="submit" class="btn btn-info" onclick="return confirm('Are you sure want to delete this item ?')">Delete</button>
+        {{ csrf_field() }}
+
+
+        <button type="submit" class="btn btn-info">Delete</button>
 
         <br><br>
 
         <table class="table table-bordered" id="myTable">
             <thead>
             <tr>
-                <th scope="col"><input type="checkbox" id="options"></th>
+                <th><input type="checkbox" id="options"></th>
                 <th scope="col">No</th>
                 <th scope="col">Id</th>
                 <th scope="col">Comment</th>
@@ -37,9 +38,9 @@
                 @if ($comments)
                     @foreach ($comments as $comment)         
                         <tr>
-                            <th>
+                            <td>
                                 <input type="checkbox" name="checkBoxArray[]" class="checkBoxes" value="{{$comment->id}}">
-                            </th>
+                            </td>
                             <th scope="row">{{$i++}}</th>
                             <td>
                                 {{$comment->id}}
@@ -132,21 +133,21 @@
 
                         this.checked = true;
 
-                    });
+                    })
                     
                 } else {
 
-                     $('.checkBoxes').each(function(){
+                    $('.checkBoxes').each(function(){
 
                         this.checked = false;
 
-                    });
+                    })
+
                 }
 
             });
 
         });
-    
     
     </script>
     
