@@ -5,7 +5,7 @@
     <h1>All Comment</h1>
     <?php $i = 1; ?>
 
-    <form action="/comments/delete" method="POSTS" enctype="multipart/form-data">
+    <form action="/comments/delete" method="POST">
 
         <input type="hidden" name="_method" value="DELETE">
 

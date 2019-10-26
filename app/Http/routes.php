@@ -22,10 +22,6 @@ Route::get('/home', 'HomeController@index');
 
 
 
-
-
-
-
 Route::group(['middleware' => 'admin'] ,function(){
 
     Route::resource('/admin/users', 'AdminUsersController');
@@ -38,12 +34,12 @@ Route::group(['middleware' => 'admin'] ,function(){
     
     Route::resource('/admin/comments', 'PostCommentsController');
     
-    Route::get('/admin', 'AdminController@index');
+  
+    Route::delete('comments/delete', [
 
-    Route::get('/admin/profile', 'AdminController@profile');
+		'as' => 'comments.delete', 'uses' => 'PostCommentsController@deleteComments'
 
-    
-    Route::delete('comments/delete', 'PostCommentsController@deleteComments');
+	] );
 
     Route::delete('media/delete', [
 
@@ -55,6 +51,10 @@ Route::group(['middleware' => 'admin'] ,function(){
         'as' => 'posts.delete', 'uses' => 'AdminPostsController@deletePosts'
 
     ]);
+
+    Route::get('/admin', 'AdminController@index');
+
+    Route::get('/admin/profile', 'AdminController@profile');
 
 });
 

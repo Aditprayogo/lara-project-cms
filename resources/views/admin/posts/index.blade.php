@@ -53,7 +53,7 @@
                             {{-- <td>{{ str_limit($post->body , 20) }}</td> --}}
                             <td>
                                 @if ($post->category)
-                                {{$post->category->name}}
+                                    {{$post->category->name}}
                                 @endif                   
                             </td>
                             <td>{{$post->user->name}}</td>

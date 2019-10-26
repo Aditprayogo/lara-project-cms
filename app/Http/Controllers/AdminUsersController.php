@@ -135,8 +135,6 @@ class AdminUsersController extends Controller
         //check jika old password sama dengan password di database
         if (\Hash::check($input['old_password'], $hashedpassword)) {
 
-            # code...
-
             //check jika input password baru tidak sama dengan password di database
             if (!\Hash::check($input['new_password'], $hashedpassword)) {
 

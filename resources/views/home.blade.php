@@ -24,7 +24,7 @@
                     </p>
                     <p><span class="glyphicon glyphicon-time"></span> {{$post->created_at}}</p>
                     <hr>
-                    <img class="img-responsive"  src="{{$post->photo ? $post->photo->file : 'http://placehold.it/900x300'}}" alt="" width="500">
+                    <img class="img-responsive"  src="{{$post->photo ? $post->photo->file : 'http://placehold.it/900x300'}}" alt="" width="700">
                     <hr>
                         {!! str_limit($post->body, 200) !!}
 
