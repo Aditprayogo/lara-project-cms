@@ -26,7 +26,8 @@ class AdminPostsController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
+		$categories = Category::all();
+		// 
 
         $posts = Post::all();
 
