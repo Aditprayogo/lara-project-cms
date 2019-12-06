@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use App\Http\Requests;
-use App\Comment;
-use App\CommentReply;
 use App\Post;
-use App\User;
+use App\Comment;
 use Auth;
 
-class CommentRepliesController extends Controller
+class PostCommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +19,11 @@ class CommentRepliesController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::paginate(4);
+
+        $posts = Post::all();
+
+        return view('admin.comments.index', compact('comments' , 'posts'));
     }
 
     /**
@@ -41,7 +44,7 @@ class CommentRepliesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $user = Auth::user();
 
         $this->validate($request, [
@@ -52,7 +55,7 @@ class CommentRepliesController extends Controller
 
         $data = [
 
-            'comment_id' => $request->input('comment_id'),
+            'post_id' => $request->input('post_id'),
             'user_id' => $user->id,
             'author' => $user->name,
             'email' => $user->email,
@@ -61,15 +64,9 @@ class CommentRepliesController extends Controller
             
         ];   
 
-        CommentReply::create($data);
+        Comment::create($data);
 
         return redirect()->back()->with('success', 'The comment has been created');
-    }
-
-    public function createReply(Request $request)
-    {
-        //
-       
     }
 
     /**
@@ -80,15 +77,16 @@ class CommentRepliesController extends Controller
      */
     public function show($id)
     {
-        //
-        $comment = Comment::findOrFail($id);
 
-        // $replies = CommentReply::paginate(6);
+        $post = Post::findOrFail($id);
 
-        // display replies for spesific comments cara gampang
-        $replies = $comment->replies;
+        // $comments = Comment::paginate(10);
 
-        return view('admin.comments.replies.show', compact('comment', 'replies'));
+        // Urutkan comment berdasarkan spesific post id
+        $comments = $post->comments;
+
+        return view('admin.comments.show', compact('comments' , 'post'));
+
     }
 
     /**
@@ -112,18 +110,14 @@ class CommentRepliesController extends Controller
     public function update(Request $request, $id)
     {
         //
-
-        $reply = CommentReply::findOrFail($id);
-
-        $this->validate($request, [
-            'body' => 'required'
-        ]);
+        $comment = Comment::findOrFail($id);
 
         $input = $request->all();
 
-        $reply->update($input);
+        $comment->update($input);
 
-        return redirect()->back()->with('success', 'The Reply has been edited');
+        return redirect()->back()->with('success', 'The Comment has been Edited');
+
     }
 
     /**
@@ -135,9 +129,22 @@ class CommentRepliesController extends Controller
     public function destroy($id)
     {
         //
-        $reply = CommentReply::findOrFail($id);
+        Comment::findOrFail($id)->delete();
 
-        $reply->delete();
+        return redirect()->back()->with('success', 'Comment has been deleted');
+
+    }
+
+    public function deleteComments(Request $request)
+    {
+        # code...
+        $comments = Comment::findOrFail($request->checkBoxArray);
+
+        foreach ($comments as $comment) {
+
+            # code...
+            $comment->delete();
+        }
 
         return redirect()->back()->with('success', 'The Comment has been deleted');
     }

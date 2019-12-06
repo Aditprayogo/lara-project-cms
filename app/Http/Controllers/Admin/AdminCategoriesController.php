@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Http\Requests\MediaCreateRequest;
-use App\Photo;
+use App\Http\Requests\AdminCategoriesCreateRequest;
 
-class AdminMediasController extends Controller
+use App\Category;
+
+class AdminCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +19,11 @@ class AdminMediasController extends Controller
     public function index()
     {
         //
-        $photos = Photo::all();
 
-        return view('admin.media.index')->with('photos', $photos);
+        $categories = Category::all();
+
+        return view('admin.categories.index')->with('categories', $categories);
+
     }
 
     /**
@@ -31,7 +34,7 @@ class AdminMediasController extends Controller
     public function create()
     {
         //
-        return view('admin.media.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -40,23 +43,13 @@ class AdminMediasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MediaCreateRequest $request)
+    public function store(AdminCategoriesCreateRequest $request)
     {
         //
-        $input = $request->all();
+        Category::create($request->all());
 
-        if ($file = $request->file('file')) {
-            # code...
-            $name = time() . $file->getClientOriginalName();
-
-            $file->move('images', $name);
-
-            $input['file'] = $name;
-        }
-
-        Photo::create($input);
-
-        return redirect('admin/medias')->with('success', 'The image has been uploaded');
+        return redirect('admin/categories')->with('success', 'Category has been created');
+        
     }
 
     /**
@@ -68,10 +61,6 @@ class AdminMediasController extends Controller
     public function show($id)
     {
         //
-        $photo = Photo::findOrFail($id);
-
-        return view('admin.media.view')->with('photo', $photo);
-
     }
 
     /**
@@ -83,6 +72,10 @@ class AdminMediasController extends Controller
     public function edit($id)
     {
         //
+
+        $category = Category::findOrFail($id);
+
+        return view('admin.categories.edit')->with('category', $category);
     }
 
     /**
@@ -95,6 +88,13 @@ class AdminMediasController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
+        $input = $request->all();
+
+        Category::findOrFail($id)->update($input);
+
+        return redirect('admin/categories')->with('success', 'The Category has been edited');
+        
     }
 
     /**
@@ -106,29 +106,9 @@ class AdminMediasController extends Controller
     public function destroy($id)
     {
         //
-        $photo = Photo::findOrFail($id);
 
-        unlink( public_path() . $photo->file );
+        Category::findOrFail($id)->delete();
 
-        $photo->delete();
-
-        return redirect('admin/medias')->with('success', 'The Photo Has Been Deleted');
-    }
-
-    public function deleteMedia(Request $request)
-    {
-        # code...
-        $photos = Photo::findOrFail($request->checkBoxArray);
-
-        foreach ($photos as $photo) {
-
-            # code...
-            $photo->delete();
-            
-        }
-
-        return redirect()->back()->with('success', 'The Medias Has been deleted');
-
-        
+        return redirect('admin/categories')->with('success', 'The category has been deleted');
     }
 }

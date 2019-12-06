@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 
 use App\Http\Requests;
@@ -146,10 +148,7 @@ class AdminPostsController extends Controller
      */
     public function update(AdminPostsEditRequest $request, $id)
     {
-        //
-
-        // $post = Post::findOrFail($id);
-
+        
         $input = $request->all();
 
         if ( $file = $request->file('photo_id') ) {

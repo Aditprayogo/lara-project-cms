@@ -13,15 +13,15 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="/admin"><i class="fas fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
 
-            <li>
+            {{-- <li>
                 <a href="/admin/profile"><i class="fa fa-dashboard fa-fw"></i> Profile</a>
-            </li>
+            </li> --}}
 
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
+                <a href="#"><i class="fas fa-users">&nbsp</i>Users<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="/admin/users/">All Users</a>
@@ -36,7 +36,7 @@
             </li>
 
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                <a href="#"><i class="fas fa-newspaper">&nbsp</i> Posts<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{route('admin.posts.index')}}">All Posts</a>
@@ -56,7 +56,7 @@
 
 
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-wrench fa-fw">&nbsp</i>Categories<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{route('admin.categories.index')}}">All Categories</a>
@@ -72,7 +72,7 @@
 
 
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
+                <a href="#"><i class="fas fa-images">&nbsp</i>Media<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{route('admin.medias.index')}}">All Media</a>

@@ -6,13 +6,32 @@
     
   
 <div class="row">
+
+    
+    
     <div class="col-lg-8">
-        <canvas id="myChart"></canvas>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    Data Chart bar
+            </div>
+            <div class="panel-body">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
     </div>
 
     <div class="col-lg-4">
-        <canvas id="myPieChart"> </canvas>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Data chart bar
+            </div>
+            <div class="panel-body">
+                <canvas id="myPieChart"> </canvas>
+            </div>
+        </div>
+        
     </div>
+    
 </div>
    
 
